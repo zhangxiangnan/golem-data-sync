@@ -1,0 +1,32 @@
+server:
+  address: 127.0.0.1
+  port: 8090
+
+spring:
+  application:
+    name: golem-data-sync
+  datasource:
+    url: jdbc:h2:file:./data/golem-data-sync;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  flyway:
+    enabled: true
+  jackson:
+    default-property-inclusion: non_null
+  mvc:
+    problemdetails:
+      enabled: true
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+
+data-sync:
+  crypto:
+    master-key: ${DATA_SYNC_MASTER_KEY:}
+    local-key-path: .runtime/master.key
+  seatunnel:
+    base-url: ${SEATUNNEL_BASE_URL:http://127.0.0.1:8081}
+    request-timeout: 10s
+    poll-delay: 2s
