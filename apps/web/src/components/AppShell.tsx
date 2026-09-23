@@ -24,6 +24,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     const timer = window.setInterval(load, 10_000);
     return () => { mounted = false; window.clearInterval(timer); };
   }, []);
+  const enabled = status?.profiles.filter((profile) => profile.enabled) ?? [];
+  const online = enabled.filter((profile) => profile.online).length;
+  const zeta = status?.profiles.find((profile) => profile.id === "zeta-local");
 
   return (
     <div className="app-shell">
@@ -41,9 +44,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         </nav>
         <div className="sidebar-footer">
           <div className="engine-card">
-            <div className="engine-row"><Activity size={16} /><span>SeaTunnel Zeta</span></div>
-            <div className="engine-state"><i className={status?.engineOnline ? "online" : "offline"} />{status?.engineOnline ? "运行正常" : "未连接"}</div>
-            <code>{status?.engineBaseUrl ?? "127.0.0.1:8081"}</code>
+            <div className="engine-row"><Activity size={16} /><span>执行引擎</span></div>
+            <div className="engine-state"><i className={online > 0 ? "online" : "offline"} />{online}/{enabled.length || 2} 个配置可用</div>
+            <code>{zeta?.online ? "Zeta ready" : "Zeta offline"} · Spark mock</code>
           </div>
           <p>SeaTunnel 2.3.13 · Local</p>
         </div>
@@ -51,7 +54,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       <main className="main-area">
         <header className="topbar">
           <div><span className="crumb">数据集成</span><span className="crumb-sep">/</span><span>{nav.find((item) => item.href === "/" ? pathname === "/" : pathname.startsWith(item.href))?.label ?? "详情"}</span></div>
-          <div className={`health-pill ${status?.engineOnline ? "healthy" : ""}`}><i />{status?.engineOnline ? "引擎在线" : "引擎离线"}</div>
+          <div className={`health-pill ${online > 0 ? "healthy" : ""}`}><i />{online > 0 ? `${online} 个引擎可用` : "引擎离线"}</div>
         </header>
         <div className="page-container">{children}</div>
       </main>

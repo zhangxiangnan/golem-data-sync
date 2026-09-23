@@ -1,6 +1,7 @@
 export type DataSourceStatus = "UNKNOWN" | "AVAILABLE" | "UNAVAILABLE";
 export type RunStatus = "SUBMITTING" | "PENDING" | "RUNNING" | "STOPPING" | "SUCCEEDED" | "FAILED" | "CANCELED" | "UNKNOWN";
 export type WriteMode = "APPEND" | "REPLACE";
+export type EngineType = "ZETA" | "SPARK" | "FLINK";
 
 export interface DataSource {
   id: string; name: string; type: string; host: string; port: number; database: string; username: string;
@@ -19,7 +20,7 @@ export interface ColumnInfo {
 }
 
 export interface RunSummary {
-  id: string; status: RunStatus; sourceReadCount: number; sinkWriteCount: number;
+  id: string; status: RunStatus; engineType: EngineType; sourceReadCount: number; sinkWriteCount: number;
   startedAt?: string; finishedAt?: string;
 }
 
@@ -40,7 +41,8 @@ export interface JobValidation { valid: boolean; issues: ValidationIssue[]; sour
 export interface RunEvent { id: string; status: RunStatus; message: string; createdAt: string }
 
 export interface SyncRun {
-  id: string; jobId: string; jobName: string; seatunnelJobId?: string; status: RunStatus;
+  id: string; jobId: string; jobName: string; seatunnelJobId?: string; engineType: EngineType;
+  engineProfileId: string; externalJobId?: string; trackingUrl?: string; metricsAvailable: boolean; status: RunStatus;
   sourceReadCount: number; sinkWriteCount: number; sourceQps: number; sinkQps: number;
   sourceBytes: number; sinkBytes: number; errorMessage?: string; stale: boolean; staleSince?: string;
   lastPollError?: string; startedAt?: string; finishedAt?: string; createdAt: string; updatedAt: string;
@@ -54,4 +56,14 @@ export interface DashboardSummary {
 
 export interface SystemStatus {
   engineOnline: boolean; engineBaseUrl: string; engineVersion?: string; message: string; checkedAt: string;
+  profiles: EngineProfile[];
+}
+
+export interface EngineProfile {
+  id: string; name: string; engineType: EngineType; enabled: boolean; mock: boolean; online: boolean;
+  version?: string; message: string; capabilities: string[];
+}
+
+export interface EngineCapability {
+  engineType: EngineType; configured: boolean; supported: string[]; limitations: string[];
 }

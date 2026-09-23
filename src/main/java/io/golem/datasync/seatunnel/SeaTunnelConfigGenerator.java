@@ -4,7 +4,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import io.golem.datasync.domain.EngineType;
 import io.golem.datasync.domain.WriteMode;
+import io.golem.datasync.engine.GeneratedEngineConfig;
 import io.golem.datasync.persistence.DataSourceConfigEntity;
 import io.golem.datasync.persistence.SyncJobEntity;
 import io.golem.datasync.security.CryptoService;
@@ -70,6 +72,75 @@ public class SeaTunnelConfigGenerator {
             return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(config);
         } catch (JsonProcessingException exception) {
             throw new IllegalStateException("Unable to serialize SeaTunnel config", exception);
+        }
+    }
+
+    public GeneratedEngineConfig forEngine(
+            EngineType engineType,
+            SyncJobEntity job,
+            DataSourceConfigEntity source,
+            DataSourceConfigEntity target,
+            boolean redact) {
+        if (engineType == EngineType.ZETA) {
+            return new GeneratedEngineConfig("json", pretty(generate(job, source, target, redact)));
+        }
+        if (engineType == EngineType.SPARK) {
+            return new GeneratedEngineConfig("hocon", sparkHocon(job, source, target, redact));
+        }
+        throw new IllegalArgumentException("No config renderer for engine: " + engineType);
+    }
+
+    private String sparkHocon(
+            SyncJobEntity job, DataSourceConfigEntity source, DataSourceConfigEntity target, boolean redact) {
+        String sourcePassword = redact ? "******" : cryptoService.decrypt(source.encryptedPassword);
+        String targetPassword = redact ? "******" : cryptoService.decrypt(target.encryptedPassword);
+        String saveMode = WriteMode.valueOf(job.writeMode) == WriteMode.APPEND ? "APPEND_DATA" : "DROP_DATA";
+        return """
+                env {
+                  "job.name" = %s
+                  "job.mode" = "BATCH"
+                  parallelism = %d
+                }
+                source {
+                  Jdbc {
+                    plugin_output = "source_table"
+                    url = %s
+                    driver = "com.mysql.cj.jdbc.Driver"
+                    user = %s
+                    password = %s
+                    table_path = %s
+                    fetch_size = %d
+                  }
+                }
+                transform {}
+                sink {
+                  Jdbc {
+                    plugin_input = ["source_table"]
+                    url = %s
+                    driver = "com.mysql.cj.jdbc.Driver"
+                    user = %s
+                    password = %s
+                    database = %s
+                    table = %s
+                    generate_sink_sql = true
+                    schema_save_mode = "CREATE_SCHEMA_WHEN_NOT_EXIST"
+                    data_save_mode = "%s"
+                    batch_size = %d
+                  }
+                }
+                """.formatted(
+                quote(job.name), job.parallelism,
+                quote(metadataService.jdbcUrl(source)), quote(source.username), quote(sourcePassword),
+                quote(source.databaseName + "." + job.sourceTable), job.batchSize,
+                quote(metadataService.jdbcUrl(target)), quote(target.username), quote(targetPassword),
+                quote(target.databaseName), quote(job.targetTable), saveMode, job.batchSize);
+    }
+
+    private String quote(String value) {
+        try {
+            return objectMapper.writeValueAsString(value);
+        } catch (JsonProcessingException exception) {
+            throw new IllegalStateException("Unable to quote SeaTunnel config value", exception);
         }
     }
 }

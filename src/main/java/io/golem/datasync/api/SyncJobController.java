@@ -5,6 +5,7 @@ import io.golem.datasync.api.ApiModels.JobValidationResponse;
 import io.golem.datasync.api.ApiModels.SyncJobRequest;
 import io.golem.datasync.api.ApiModels.SyncJobResponse;
 import io.golem.datasync.api.ApiModels.SyncRunResponse;
+import io.golem.datasync.api.ApiModels.RunStartRequest;
 import io.golem.datasync.service.SyncJobService;
 import io.golem.datasync.service.SyncRunService;
 import jakarta.validation.Valid;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping("/api/sync-jobs")
@@ -54,9 +56,17 @@ public class SyncJobController {
     public JobValidationResponse validate(@PathVariable String id) { return jobService.validate(id); }
 
     @GetMapping("/{id}/config-preview")
-    public ConfigPreviewResponse configPreview(@PathVariable String id) { return jobService.configPreview(id); }
+    public ConfigPreviewResponse configPreview(
+            @PathVariable String id,
+            @RequestParam(defaultValue = "zeta-local") String engineProfileId) {
+        return jobService.configPreview(id, engineProfileId);
+    }
 
     @PostMapping("/{id}/runs")
     @ResponseStatus(HttpStatus.CREATED)
-    public SyncRunResponse run(@PathVariable String id) { return runService.start(id); }
+    public SyncRunResponse run(
+            @PathVariable String id,
+            @Valid @RequestBody(required = false) RunStartRequest request) {
+        return runService.start(id, request == null ? "zeta-local" : request.engineProfileId());
+    }
 }

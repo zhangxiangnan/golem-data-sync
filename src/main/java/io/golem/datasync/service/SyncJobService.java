@@ -12,6 +12,7 @@ import io.golem.datasync.api.ConflictException;
 import io.golem.datasync.api.RequestValidationException;
 import io.golem.datasync.api.ResourceNotFoundException;
 import io.golem.datasync.domain.RunStatus;
+import io.golem.datasync.domain.EngineType;
 import io.golem.datasync.domain.WriteMode;
 import io.golem.datasync.persistence.DataSourceConfigEntity;
 import io.golem.datasync.persistence.SyncJobEntity;
@@ -19,6 +20,7 @@ import io.golem.datasync.persistence.SyncJobMapper;
 import io.golem.datasync.persistence.SyncRunEntity;
 import io.golem.datasync.persistence.SyncRunMapper;
 import io.golem.datasync.seatunnel.SeaTunnelConfigGenerator;
+import io.golem.datasync.engine.EngineRegistry;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -39,18 +41,21 @@ public class SyncJobService {
     private final DataSourceService dataSourceService;
     private final MysqlMetadataService metadataService;
     private final SeaTunnelConfigGenerator configGenerator;
+    private final EngineRegistry engineRegistry;
 
     public SyncJobService(
             SyncJobMapper mapper,
             SyncRunMapper runMapper,
             DataSourceService dataSourceService,
             MysqlMetadataService metadataService,
-            SeaTunnelConfigGenerator configGenerator) {
+            SeaTunnelConfigGenerator configGenerator,
+            EngineRegistry engineRegistry) {
         this.mapper = mapper;
         this.runMapper = runMapper;
         this.dataSourceService = dataSourceService;
         this.metadataService = metadataService;
         this.configGenerator = configGenerator;
+        this.engineRegistry = engineRegistry;
     }
 
     public List<SyncJobResponse> list() {
@@ -147,14 +152,16 @@ public class SyncJobService {
         return new JobValidationResponse(valid, issues, sourceColumns);
     }
 
-    public ConfigPreviewResponse configPreview(String id) {
+    public ConfigPreviewResponse configPreview(String id, String engineProfileId) {
         SyncJobEntity job = require(id);
-        String content = configGenerator.pretty(configGenerator.generate(
+        var client = engineRegistry.require(engineProfileId);
+        var generated = configGenerator.forEngine(
+                client.engineType(),
                 job,
                 dataSourceService.require(job.sourceDataSourceId),
                 dataSourceService.require(job.targetDataSourceId),
-                true));
-        return new ConfigPreviewResponse("json", content);
+                true);
+        return new ConfigPreviewResponse(generated.format(), generated.content());
     }
 
     private void compareSchema(List<ColumnInfo> source, List<ColumnInfo> target, List<ValidationIssue> issues) {
@@ -236,7 +243,8 @@ public class SyncJobService {
                 .orderByDesc(SyncRunEntity::getCreatedAt)
                 .last("LIMIT 1"));
         RunSummary latestRun = latest == null ? null : new RunSummary(
-                latest.id, RunStatus.valueOf(latest.status), value(latest.sourceReadCount), value(latest.sinkWriteCount),
+                latest.id, RunStatus.valueOf(latest.status), engineType(latest),
+                value(latest.sourceReadCount), value(latest.sinkWriteCount),
                 latest.startedAt, latest.finishedAt);
         return new SyncJobResponse(
                 entity.id, entity.name, entity.description,
@@ -257,5 +265,9 @@ public class SyncJobService {
 
     private long value(Long value) {
         return value == null ? 0 : value;
+    }
+
+    private EngineType engineType(SyncRunEntity run) {
+        return run.engineType == null ? EngineType.ZETA : EngineType.valueOf(run.engineType);
     }
 }

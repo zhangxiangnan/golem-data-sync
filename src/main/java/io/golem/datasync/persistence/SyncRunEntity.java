@@ -9,6 +9,11 @@ public class SyncRunEntity {
     @TableId public String id;
     public String jobId;
     public String seatunnelJobId;
+    public String engineType;
+    public String engineProfileId;
+    public String externalJobId;
+    public String trackingUrl;
+    public Boolean metricsAvailable;
     public String status;
     public Long sourceReadCount;
     public Long sinkWriteCount;

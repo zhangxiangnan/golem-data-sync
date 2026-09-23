@@ -1,6 +1,7 @@
 package io.golem.datasync.api;
 
 import io.golem.datasync.domain.DataSourceStatus;
+import io.golem.datasync.domain.EngineType;
 import io.golem.datasync.domain.RunStatus;
 import io.golem.datasync.domain.WriteMode;
 import jakarta.validation.constraints.Max;
@@ -83,6 +84,7 @@ public final class ApiModels {
     public record RunSummary(
             String id,
             RunStatus status,
+            EngineType engineType,
             long sourceReadCount,
             long sinkWriteCount,
             LocalDateTime startedAt,
@@ -95,6 +97,25 @@ public final class ApiModels {
 
     public record ConfigPreviewResponse(String format, String content) {}
 
+    public record RunStartRequest(@Size(max = 80) String engineProfileId) {}
+
+    public record EngineProfileResponse(
+            String id,
+            String name,
+            EngineType engineType,
+            boolean enabled,
+            boolean mock,
+            boolean online,
+            String version,
+            String message,
+            List<String> capabilities) {}
+
+    public record EngineCapabilityResponse(
+            EngineType engineType,
+            boolean configured,
+            List<String> supported,
+            List<String> limitations) {}
+
     public record RunEventResponse(String id, RunStatus status, String message, LocalDateTime createdAt) {}
 
     public record SyncRunResponse(
@@ -102,6 +123,11 @@ public final class ApiModels {
             String jobId,
             String jobName,
             String seatunnelJobId,
+            EngineType engineType,
+            String engineProfileId,
+            String externalJobId,
+            String trackingUrl,
+            boolean metricsAvailable,
             RunStatus status,
             long sourceReadCount,
             long sinkWriteCount,
@@ -133,5 +159,6 @@ public final class ApiModels {
             String engineBaseUrl,
             String engineVersion,
             String message,
-            LocalDateTime checkedAt) {}
+            LocalDateTime checkedAt,
+            List<EngineProfileResponse> profiles) {}
 }

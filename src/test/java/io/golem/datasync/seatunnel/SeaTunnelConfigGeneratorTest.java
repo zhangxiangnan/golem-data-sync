@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.golem.datasync.config.DataSyncProperties;
+import io.golem.datasync.domain.EngineType;
 import io.golem.datasync.persistence.DataSourceConfigEntity;
 import io.golem.datasync.persistence.SyncJobEntity;
 import io.golem.datasync.security.CryptoService;
@@ -47,6 +48,29 @@ class SeaTunnelConfigGeneratorTest {
         job.parallelism = 1; job.batchSize = 1000;
         assertThat(generator.pretty(generator.generate(job, source(crypto, "a", "x"), source(crypto, "b", "y"), true)))
                 .contains("\"data_save_mode\" : \"APPEND_DATA\"");
+    }
+
+    @Test
+    void rendersSparkHoconWithTheSameWritePolicyAndRedaction() {
+        CryptoService crypto = crypto();
+        SeaTunnelConfigGenerator generator = new SeaTunnelConfigGenerator(
+                new ObjectMapper(), crypto, new MysqlMetadataService(crypto));
+        SyncJobEntity job = new SyncJobEntity();
+        job.name = "orders_sync"; job.sourceTable = "orders"; job.targetTable = "orders_copy";
+        job.writeMode = "REPLACE"; job.parallelism = 3; job.batchSize = 800;
+
+        var preview = generator.forEngine(
+                EngineType.SPARK, job,
+                source(crypto, "source_db", "source-secret"),
+                source(crypto, "target_db", "target-secret"), true);
+
+        assertThat(preview.format()).isEqualTo("hocon");
+        assertThat(preview.content())
+                .contains("job.mode\" = \"BATCH\"")
+                .contains("table_path = \"source_db.orders\"")
+                .contains("data_save_mode = \"DROP_DATA\"")
+                .contains("******")
+                .doesNotContain("source-secret", "target-secret");
     }
 
     private CryptoService crypto() {

@@ -24,18 +24,21 @@ public class DashboardService {
     private final SyncRunMapper runMapper;
     private final SyncRunService runService;
     private final SeaTunnelClient seaTunnelClient;
+    private final EngineCatalogService engineCatalogService;
 
     public DashboardService(
             DataSourceConfigMapper dataSourceMapper,
             SyncJobMapper jobMapper,
             SyncRunMapper runMapper,
             SyncRunService runService,
-            SeaTunnelClient seaTunnelClient) {
+            SeaTunnelClient seaTunnelClient,
+            EngineCatalogService engineCatalogService) {
         this.dataSourceMapper = dataSourceMapper;
         this.jobMapper = jobMapper;
         this.runMapper = runMapper;
         this.runService = runService;
         this.seaTunnelClient = seaTunnelClient;
+        this.engineCatalogService = engineCatalogService;
     }
 
     public DashboardSummary summary() {
@@ -58,15 +61,16 @@ public class DashboardService {
 
     public SystemStatusResponse systemStatus() {
         LocalDateTime now = LocalDateTime.now();
-        try {
-            var overview = seaTunnelClient.overview();
-            String version = overview == null ? null : overview.path("projectVersion").asText(null);
-            if (version == null && overview != null) {
-                version = overview.path("version").asText(null);
-            }
-            return new SystemStatusResponse(true, seaTunnelClient.baseUrl(), version, "SeaTunnel Zeta 连接正常", now);
-        } catch (Exception exception) {
-            return new SystemStatusResponse(false, seaTunnelClient.baseUrl(), null, "无法连接 SeaTunnel Zeta", now);
-        }
+        var profiles = engineCatalogService.profiles();
+        var zeta = profiles.stream().filter(profile -> profile.engineType() == io.golem.datasync.domain.EngineType.ZETA)
+                .findFirst().orElse(null);
+        boolean online = profiles.stream().anyMatch(profile -> profile.enabled() && profile.online());
+        return new SystemStatusResponse(
+                online,
+                seaTunnelClient.baseUrl(),
+                zeta == null ? null : zeta.version(),
+                online ? "至少一个执行配置可用" : "没有可用的执行配置",
+                now,
+                profiles);
     }
 }
