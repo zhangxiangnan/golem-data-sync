@@ -77,6 +77,23 @@ public class SeaTunnelClient {
         return client.get().uri("/overview").retrieve().bodyToMono(JsonNode.class).block(timeout);
     }
 
+    public JsonNode labSubmit(ObjectNode config, String externalId, String name, boolean restore) {
+        return client.post().uri(uri -> uri.path("/submit-job").queryParam("jobId", externalId)
+                .queryParam("jobName", name).queryParam("isStartWithSavePoint", restore).build())
+                .contentType(MediaType.APPLICATION_JSON).bodyValue(config).retrieve().bodyToMono(JsonNode.class).block(timeout);
+    }
+
+    public void labStop(String jobId, boolean savepoint) {
+        ObjectNode body = new com.fasterxml.jackson.databind.ObjectMapper().createObjectNode();
+        body.put("jobId", Long.parseLong(jobId)); body.put("isStopWithSavePoint", savepoint);
+        client.post().uri("/stop-job").contentType(MediaType.APPLICATION_JSON).bodyValue(body)
+                .retrieve().toBodilessEntity().block(timeout);
+    }
+
+    public JsonNode labJobInfo(String jobId) { return client.get().uri("/job-info/{id}", jobId).retrieve().bodyToMono(JsonNode.class).block(timeout); }
+    public JsonNode labCheckpoints(String jobId) { return client.get().uri("/jobs/checkpoints/{id}", jobId).retrieve().bodyToMono(JsonNode.class).block(timeout); }
+    public JsonNode labResources() { return client.get().uri("/system-monitoring-information").retrieve().bodyToMono(JsonNode.class).block(timeout); }
+
     public String baseUrl() {
         return baseUrl;
     }

@@ -1,0 +1,11 @@
+"use client";
+import Link from "next/link";
+import { useEffect,useState } from "react";
+import { labApi,type Experiment,type Run } from "@/lib/lab-api";
+import { PageHeader,ErrorBanner,LoadingState,EmptyState } from "@/components/ui";
+import { LabNav,RunsTable } from "@/components/lab/LabCommon";
+export default function LabPage(){
+ const [experiments,setExperiments]=useState<Experiment[]>(),[runs,setRuns]=useState<Run[]>([]),[error,setError]=useState("");
+ useEffect(()=>{let current=true;let timer:ReturnType<typeof setTimeout>;const load=async()=>{try{const [e,r]=await Promise.all([labApi.experiments(),labApi.runs()]);if(current){setExperiments(e);setRuns(r);setError("");}}catch(e){if(current)setError(e instanceof Error?e.message:"加载失败");}finally{if(current)timer=setTimeout(load,2000);}};void load();return()=>{current=false;clearTimeout(timer);};},[]);
+ return <><PageHeader eyebrow="SEATUNNEL LAB" title="SeaTunnel 实验台" description="配置、执行与观测 · 固定 Zeta 2.3.13 · 真实批量实验" action={<Link className="button primary" href="/lab/new">创建实验</Link>}/><LabNav/>{error&&<ErrorBanner message={error}/>}{!experiments?<LoadingState/>:experiments.length===0?<EmptyState title="开始第一个实验" description="从 Transform、多表、保存点或性能模板开始" href="/lab/new" action="创建实验"/>:<div className="lab-cards">{experiments.map(e=><article className="panel lab-panel" key={e.id}><span className="eyebrow">ZETA · BATCH</span><h3><Link href={`/lab/${e.id}`}>{e.name}</Link></h3><p className="lab-note">{e.description||"暂无说明"}</p><p className="lab-note">{e.config.source.length} Source → {e.config.transform.length} Transform → {e.config.sink.length} Sink</p><div className="actions"><Link className="button" href={`/lab/${e.id}`}>配置实验</Link><button className="button" onClick={()=>labApi.copy(e.id).then(copy=>setExperiments([copy,...experiments])).catch(err=>setError(err.message))}>复制</button><button className="button" onClick={()=>{if(window.confirm("归档此实验？历史运行和数据源引用会保留。"))void labApi.remove(e.id).then(()=>setExperiments(experiments.filter(x=>x.id!==e.id))).catch(err=>setError(err.message));}}>归档</button></div></article>)}</div>}<section className="panel lab-panel"><div className="lab-toolbar"><h3>最近运行</h3><Link className="lab-link" href="/lab/compare">选择 2–4 次运行对比 →</Link></div><RunsTable runs={runs}/></section></>;
+}

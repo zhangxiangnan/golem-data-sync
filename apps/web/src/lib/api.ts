@@ -1,4 +1,4 @@
-import type { ColumnInfo, DashboardSummary, DataSource, DataSourceInput, EngineCapability, EngineProfile, JobValidation, SyncJob, SyncJobInput, SyncRun, SystemStatus, TableInfo } from "./types";
+import type { ColumnInfo, DashboardSummary, DataSource, DataSourceInput, EngineCapability, EngineProfile, JobValidation, SyncJob, SyncJobInput, SyncRun, SystemStatus, TableInfo, TableRows } from "./types";
 
 export class ApiError extends Error {
   constructor(message: string, public status: number) { super(message); }
@@ -31,6 +31,7 @@ export const api = {
   testDataSource: (id: string) => request<{ success: boolean; message: string; latencyMs: number }>(`/api/data-sources/${id}/test`, { method: "POST" }),
   tables: (id: string) => request<TableInfo[]>(`/api/data-sources/${id}/tables`),
   columns: (id: string, table: string) => request<ColumnInfo[]>(`/api/data-sources/${id}/tables/${encodeURIComponent(table)}/columns`),
+  tableRows: (id: string, table: string, page = 1, pageSize = 50) => request<TableRows>(`/api/data-sources/${id}/tables/${encodeURIComponent(table)}/rows?page=${page}&pageSize=${pageSize}`),
   jobs: () => request<SyncJob[]>("/api/sync-jobs"),
   job: (id: string) => request<SyncJob>(`/api/sync-jobs/${id}`),
   createJob: (body: SyncJobInput) => request<SyncJob>("/api/sync-jobs", { method: "POST", body: JSON.stringify(body) }),

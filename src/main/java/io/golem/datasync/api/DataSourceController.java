@@ -6,6 +6,8 @@ import io.golem.datasync.api.ApiModels.DataSourceRequest;
 import io.golem.datasync.api.ApiModels.DataSourceResponse;
 import io.golem.datasync.api.ApiModels.TableInfo;
 import io.golem.datasync.service.DataSourceService;
+import io.golem.datasync.service.TableBrowseService;
+import io.golem.datasync.api.ApiModels.TableRowsResponse;
 import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.http.HttpStatus;
@@ -17,15 +19,18 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/data-sources")
 public class DataSourceController {
     private final DataSourceService service;
+    private final TableBrowseService browseService;
 
-    public DataSourceController(DataSourceService service) {
+    public DataSourceController(DataSourceService service, TableBrowseService browseService) {
         this.service = service;
+        this.browseService = browseService;
     }
 
     @GetMapping
@@ -56,5 +61,12 @@ public class DataSourceController {
     @GetMapping("/{id}/tables/{table}/columns")
     public List<ColumnInfo> columns(@PathVariable String id, @PathVariable String table) {
         return service.columns(id, table);
+    }
+
+    @GetMapping("/{id}/tables/{table}/rows")
+    public TableRowsResponse rows(@PathVariable String id, @PathVariable String table,
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "50") int pageSize) {
+        return browseService.rows(id, table, page, pageSize);
     }
 }

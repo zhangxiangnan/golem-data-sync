@@ -27,6 +27,7 @@ import org.springframework.util.StringUtils;
 
 @Service
 public class DataSourceService {
+    private final io.golem.datasync.lab.LabRepository lab;
     private final DataSourceConfigMapper mapper;
     private final SyncJobMapper jobMapper;
     private final CryptoService cryptoService;
@@ -38,7 +39,8 @@ public class DataSourceService {
             SyncJobMapper jobMapper,
             CryptoService cryptoService,
             SecretSanitizer sanitizer,
-            MysqlMetadataService metadataService) {
+            MysqlMetadataService metadataService, io.golem.datasync.lab.LabRepository lab) {
+        this.lab = lab;
         this.mapper = mapper;
         this.jobMapper = jobMapper;
         this.cryptoService = cryptoService;
@@ -100,6 +102,9 @@ public class DataSourceService {
                 .eq(SyncJobEntity::getSourceDataSourceId, id)
                 .or()
                 .eq(SyncJobEntity::getTargetDataSourceId, id));
+        if (lab.sourceReferenced(id)) {
+            throw new ConflictException("数据源被实验或历史运行引用，不能删除");
+        }
         if (references > 0) {
             throw new ConflictException("Data source is referenced by sync jobs and cannot be deleted");
         }

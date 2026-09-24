@@ -11,6 +11,7 @@ const nav = [
   { href: "/", label: "概览", icon: Gauge },
   { href: "/sources", label: "数据源", icon: Database },
   { href: "/jobs", label: "同步任务", icon: Blocks },
+  { href: "/lab", label: "SeaTunnel 实验台", icon: Waves },
 ];
 
 export function AppShell({ children }: { children: React.ReactNode }) {

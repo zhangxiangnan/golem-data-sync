@@ -1,0 +1,6 @@
+"use client";
+import { useEffect,useState } from "react";
+import { labApi,type Cluster } from "@/lib/lab-api";
+import { PageHeader,LoadingState,ErrorBanner } from "@/components/ui";
+import { LabNav,JsonView } from "@/components/lab/LabCommon";
+export default function Page(){const [info,setInfo]=useState<Cluster>(),[error,setError]=useState("");useEffect(()=>{let active=true;labApi.cluster().then(c=>active&&setInfo(c)).catch(e=>active&&setError(e.message));return()=>{active=false;};},[]);return <><PageHeader eyebrow="LOCAL CLUSTER · READ ONLY" title="本机 Zeta 集群" description="配置文件只读展示；运行信息以实际接口响应为准。"/><LabNav/>{error&&<ErrorBanner message={error}/>} {!info?<LoadingState/>:<>{info.error&&<ErrorBanner message={info.error}/>}<section className="panel lab-panel"><h3>实际版本、Slot 和集群状态</h3><JsonView value={info.overview}/></section><section className="panel lab-panel"><h3>运行进程资源</h3><p className="lab-note">{info.resourceScope}</p><JsonView value={info.resources}/></section>{info.files.map(f=><section className="panel lab-panel" key={f.name}><h3>{f.name} · 修改后需重启</h3><p className="lab-note">{f.source}。Checkpoint 存储、动态 Slot 与 JVM 配置请展开文件查看。</p><pre className="lab-json">{f.content??f.error??"不可用"}</pre></section>)}<section className="panel lab-panel"><h3>本机插件文件</h3><JsonView value={info.plugins}/></section></>}</>;}

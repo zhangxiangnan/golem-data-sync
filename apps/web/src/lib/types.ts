@@ -67,3 +67,8 @@ export interface EngineProfile {
 export interface EngineCapability {
   engineType: EngineType; configured: boolean; supported: string[]; limitations: string[];
 }
+
+export interface TableRows {
+  columns: ColumnInfo[]; rows: (string | null)[][]; total: number;
+  page: number; pageSize: number; orderedByPrimaryKey: boolean;
+}

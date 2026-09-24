@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Database, Plus, RefreshCw, Trash2, X } from "lucide-react";
 import { FormEvent, useCallback, useEffect, useState } from "react";
 import { StatusBadge } from "@/components/StatusBadge";
@@ -37,7 +38,7 @@ export default function SourcesPage() {
       <div className="panel-header"><div><h2>MySQL 连接</h2><p>{sources.length} 个已登记数据源</p></div></div>
       {sources.length === 0 ? <EmptyState title="还没有数据源" description="先添加源端和目标端 MySQL 连接，然后创建同步任务。" /> :
         <table className="data-table"><thead><tr><th>名称</th><th>连接地址</th><th>数据库</th><th>账号</th><th>状态</th><th>最后测试</th><th /></tr></thead><tbody>
-          {sources.map((source) => <tr key={source.id}><td><span className="cell-title">{source.name}</span><span className="cell-sub">MySQL</span></td><td><code>{source.host}:{source.port}</code></td><td><span className="db-pill"><Database size={12} />{source.database}</span></td><td>{source.username}</td><td><StatusBadge status={source.status} /></td><td>{formatDate(source.lastTestAt)}</td><td><div className="actions"><button className="button ghost small" disabled={testing === source.id} onClick={() => test(source.id)}><RefreshCw size={13} />{testing === source.id ? "测试中" : "测试"}</button><button className="button ghost small" onClick={() => setEditing(source)}>编辑</button><button aria-label="删除" className="button ghost small danger" onClick={() => remove(source)}><Trash2 size={13} /></button></div></td></tr>)}
+          {sources.map((source) => <tr key={source.id}><td><span className="cell-title">{source.name}</span><span className="cell-sub">MySQL</span></td><td><code>{source.host}:{source.port}</code></td><td><span className="db-pill"><Database size={12} />{source.database}</span></td><td>{source.username}</td><td><StatusBadge status={source.status} /></td><td>{formatDate(source.lastTestAt)}</td><td><div className="actions"><Link className="button ghost small" href={`/sources/${source.id}/browse`}>查看数据</Link><button className="button ghost small" disabled={testing === source.id} onClick={() => test(source.id)}><RefreshCw size={13} />{testing === source.id ? "测试中" : "测试"}</button><button className="button ghost small" onClick={() => setEditing(source)}>编辑</button><button aria-label="删除" className="button ghost small danger" onClick={() => remove(source)}><Trash2 size={13} /></button></div></td></tr>)}
         </tbody></table>}
     </section>}
     {editing !== undefined && <SourceModal source={editing} onClose={() => setEditing(undefined)} onSaved={async () => { setEditing(undefined); await load(); }} />}

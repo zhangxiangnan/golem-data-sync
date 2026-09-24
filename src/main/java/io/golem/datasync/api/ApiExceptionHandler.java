@@ -7,6 +7,7 @@ import org.springframework.http.ProblemDetail;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 @RestControllerAdvice
 public class ApiExceptionHandler {
@@ -32,6 +33,11 @@ public class ApiExceptionHandler {
                 .findFirst()
                 .orElse("Request body validation failed");
         return problem(HttpStatus.BAD_REQUEST, "Invalid request", detail);
+    }
+
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    ProblemDetail invalidParameter(MethodArgumentTypeMismatchException exception) {
+        return problem(HttpStatus.BAD_REQUEST, "Invalid request", "请求参数类型不正确：" + exception.getName());
     }
 
     @ExceptionHandler(Exception.class)

@@ -42,6 +42,10 @@ public final class ApiModels {
 
     public record TableInfo(String name, String type) {}
 
+    public record TableRowsResponse(
+            List<ColumnInfo> columns, List<List<String>> rows, long total,
+            int page, int pageSize, boolean orderedByPrimaryKey) {}
+
     public record ColumnInfo(
             String name,
             String typeName,

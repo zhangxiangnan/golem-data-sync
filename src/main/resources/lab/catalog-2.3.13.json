@@ -1,0 +1,3657 @@
+{
+  "version" : "2.3.13",
+  "provenance" : "Extracted from installed SeaTunnel Options and Factory.optionRule() in an isolated JVM",
+  "groups" : [ {
+    "id" : "env",
+    "plugin" : "",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.api.options.EnvCommonOptions",
+    "options" : [ {
+      "key" : "checkpoint.interval",
+      "javaType" : "java.lang.Long",
+      "type" : "number",
+      "defaultValue" : null,
+      "description" : "The interval (in milliseconds) between two consecutive checkpoints.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.EnvCommonOptions"
+    }, {
+      "key" : "checkpoint.timeout",
+      "javaType" : "java.lang.Long",
+      "type" : "number",
+      "defaultValue" : null,
+      "description" : "The timeout (in milliseconds) for a checkpoint.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.EnvCommonOptions"
+    }, {
+      "key" : "custom_parameters",
+      "javaType" : "java.util.Map<java.lang.String,java.lang.String>",
+      "type" : "object",
+      "defaultValue" : null,
+      "description" : "custom parameters for run engine",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.EnvCommonOptions"
+    }, {
+      "key" : "jars",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "third-party packages can be loaded via `jars`",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.EnvCommonOptions"
+    }, {
+      "key" : "job.mode",
+      "javaType" : "org.apache.seatunnel.common.constants.JobMode",
+      "type" : "string",
+      "defaultValue" : "BATCH",
+      "description" : "The job mode of this job, support Batch and Stream",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.EnvCommonOptions",
+      "enumValues" : [ "BATCH", "STREAMING" ]
+    }, {
+      "key" : "job.name",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : "SeaTunnel_Job",
+      "description" : "The job name of this job",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.EnvCommonOptions"
+    }, {
+      "key" : "job.retry.interval.seconds",
+      "javaType" : "java.lang.Integer",
+      "type" : "number",
+      "defaultValue" : 3,
+      "description" : "The retry interval seconds of this job",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.EnvCommonOptions"
+    }, {
+      "key" : "job.retry.times",
+      "javaType" : "java.lang.Integer",
+      "type" : "number",
+      "defaultValue" : 3,
+      "description" : "The retry times of this job",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.EnvCommonOptions"
+    }, {
+      "key" : "metalake_enabled",
+      "javaType" : "java.lang.Boolean",
+      "type" : "boolean",
+      "defaultValue" : false,
+      "description" : "Turn on metadata lake",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.EnvCommonOptions"
+    }, {
+      "key" : "metalake_type",
+      "javaType" : "org.apache.seatunnel.common.constants.MetaLakeType",
+      "type" : "string",
+      "defaultValue" : "GRAVITINO",
+      "description" : "Metadata lake type, for example: gravitino",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.EnvCommonOptions",
+      "enumValues" : [ "GRAVITINO" ]
+    }, {
+      "key" : "metalake_url",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The http path of the metadata lake, for example: http://localhost:8090/api/metalakes/laowang_test/catalogs/",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.EnvCommonOptions"
+    }, {
+      "key" : "min-pause",
+      "javaType" : "java.lang.Integer",
+      "type" : "number",
+      "defaultValue" : -1,
+      "description" : "The minimum pause (in milliseconds) between consecutive checkpoints. This ensures that checkpoints are not triggered too frequently and provides.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.EnvCommonOptions"
+    }, {
+      "key" : "parallelism",
+      "javaType" : "java.lang.Integer",
+      "type" : "number",
+      "defaultValue" : 1,
+      "description" : "When parallelism is not specified in connector, the parallelism in env is used by default. When parallelism is specified, it will override the parallelism in env.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.EnvCommonOptions"
+    }, {
+      "key" : "read_limit.bytes_per_second",
+      "javaType" : "java.lang.Integer",
+      "type" : "number",
+      "defaultValue" : null,
+      "description" : "The each parallelism bytes limit per second for read data from source.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.EnvCommonOptions"
+    }, {
+      "key" : "read_limit.rows_per_second",
+      "javaType" : "java.lang.Integer",
+      "type" : "number",
+      "defaultValue" : null,
+      "description" : "The each parallelism row limit per second for read data from source.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.EnvCommonOptions"
+    }, {
+      "key" : "savemode.execute.location",
+      "javaType" : "org.apache.seatunnel.api.sink.SaveModeExecuteLocation",
+      "type" : "string",
+      "defaultValue" : "CLUSTER",
+      "description" : "The location of save mode execute.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.EnvCommonOptions",
+      "enumValues" : [ "CLIENT", "CLUSTER" ]
+    }, {
+      "key" : "tag_filter",
+      "javaType" : "java.util.Map<java.lang.String,java.lang.String>",
+      "type" : "object",
+      "defaultValue" : null,
+      "description" : "Define the worker where the job runs by tag",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.EnvCommonOptions"
+    } ],
+    "rules" : [ ]
+  }, {
+    "id" : "source.common",
+    "plugin" : "",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.api.options.SourceConnectorCommonOptions",
+    "options" : [ {
+      "key" : "catalog",
+      "javaType" : "java.util.Map<java.lang.String,java.lang.String>",
+      "type" : "object",
+      "defaultValue" : null,
+      "description" : "configuration options for the catalog.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.table.CatalogOptions"
+    }, {
+      "key" : "dag-parsing.mode",
+      "javaType" : "org.apache.seatunnel.api.env.ParsingMode",
+      "type" : "string",
+      "defaultValue" : "SINGLENESS",
+      "description" : "Whether to enable parsing support for multi-table source",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.SourceConnectorCommonOptions",
+      "enumValues" : [ "SINGLENESS", "SHARDING", "MULTIPLEX" ]
+    }, {
+      "key" : "plugin_input",
+      "javaType" : "java.util.List<java.lang.String>",
+      "type" : "array",
+      "defaultValue" : null,
+      "description" : "When plugin_input is not specified, the current plug-in processes the data set dataset output by the previous plugin in the configuration file. When plugin_input is specified, the current plug-in is processing the data set corresponding to this parameter.",
+      "fallbackKeys" : [ "source_table_name" ],
+      "origin" : "org.apache.seatunnel.api.options.ConnectorCommonOptions"
+    }, {
+      "key" : "plugin_name",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Name of the SPI plugin class.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.ConnectorCommonOptions"
+    }, {
+      "key" : "plugin_output",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "When plugin_output is not specified, the data processed by this plugin will not be registered as a data set (dataStream/dataset) that can be directly accessed by other plugins, or called a temporary table (table)When plugin_output is specified, the data processed by this plugin will be registered as a data set (dataStream/dataset) that can be directly accessed by other plugins, or called a temporary table (table) . The data set (dataStream/dataset) registered here can be directly accessed by other plugins by specifying plugin_input .",
+      "fallbackKeys" : [ "result_table_name" ],
+      "origin" : "org.apache.seatunnel.api.options.ConnectorCommonOptions"
+    }, {
+      "key" : "schema",
+      "javaType" : "java.util.Map<java.lang.String,java.lang.Object>",
+      "type" : "object",
+      "defaultValue" : null,
+      "description" : "SeaTunnel Schema",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.table.TableSchemaOptions"
+    }, {
+      "key" : "schema.fields",
+      "javaType" : "java.util.Map<java.lang.String,java.lang.Object>",
+      "type" : "object",
+      "defaultValue" : null,
+      "description" : "SeaTunnel Schema Fields",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.table.FieldOptions"
+    }, {
+      "key" : "tables_configs",
+      "javaType" : "java.util.List<java.util.Map<java.lang.String,java.lang.Object>>",
+      "type" : "array",
+      "defaultValue" : null,
+      "description" : "SeaTunnel Multi Table Schema, acts on structured and unstructured data sources. such as file, assert, mongodb, jdbc, paimon, doris, etc",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.table.TableSchemaOptions"
+    }, {
+      "key" : "parallelism",
+      "javaType" : "java.lang.Integer",
+      "type" : "number",
+      "defaultValue" : null,
+      "description" : "When parallelism is not specified in connector, the parallelism in env is used by default. When parallelism is specified, it will override the parallelism in env.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.EnvCommonOptions",
+      "condition" : "Overrides env.parallelism when explicitly configured on this node"
+    } ],
+    "rules" : [ ]
+  }, {
+    "id" : "sink.common",
+    "plugin" : "",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.api.options.SinkConnectorCommonOptions",
+    "options" : [ {
+      "key" : "catalog",
+      "javaType" : "java.util.Map<java.lang.String,java.lang.String>",
+      "type" : "object",
+      "defaultValue" : null,
+      "description" : "configuration options for the catalog.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.table.CatalogOptions"
+    }, {
+      "key" : "multi_table_sink_replica",
+      "javaType" : "java.lang.Integer",
+      "type" : "number",
+      "defaultValue" : 1,
+      "description" : "The replica number of multi table sink writer",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.SinkConnectorCommonOptions"
+    }, {
+      "key" : "plugin_input",
+      "javaType" : "java.util.List<java.lang.String>",
+      "type" : "array",
+      "defaultValue" : null,
+      "description" : "When plugin_input is not specified, the current plug-in processes the data set dataset output by the previous plugin in the configuration file. When plugin_input is specified, the current plug-in is processing the data set corresponding to this parameter.",
+      "fallbackKeys" : [ "source_table_name" ],
+      "origin" : "org.apache.seatunnel.api.options.ConnectorCommonOptions"
+    }, {
+      "key" : "plugin_name",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Name of the SPI plugin class.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.ConnectorCommonOptions"
+    }, {
+      "key" : "plugin_output",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "When plugin_output is not specified, the data processed by this plugin will not be registered as a data set (dataStream/dataset) that can be directly accessed by other plugins, or called a temporary table (table)When plugin_output is specified, the data processed by this plugin will be registered as a data set (dataStream/dataset) that can be directly accessed by other plugins, or called a temporary table (table) . The data set (dataStream/dataset) registered here can be directly accessed by other plugins by specifying plugin_input .",
+      "fallbackKeys" : [ "result_table_name" ],
+      "origin" : "org.apache.seatunnel.api.options.ConnectorCommonOptions"
+    }, {
+      "key" : "schema",
+      "javaType" : "java.util.Map<java.lang.String,java.lang.Object>",
+      "type" : "object",
+      "defaultValue" : null,
+      "description" : "SeaTunnel Schema",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.table.TableSchemaOptions"
+    }, {
+      "key" : "schema.fields",
+      "javaType" : "java.util.Map<java.lang.String,java.lang.Object>",
+      "type" : "object",
+      "defaultValue" : null,
+      "description" : "SeaTunnel Schema Fields",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.table.FieldOptions"
+    }, {
+      "key" : "tables_configs",
+      "javaType" : "java.util.List<java.util.Map<java.lang.String,java.lang.Object>>",
+      "type" : "array",
+      "defaultValue" : null,
+      "description" : "SeaTunnel Multi Table Schema, acts on structured and unstructured data sources. such as file, assert, mongodb, jdbc, paimon, doris, etc",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.table.TableSchemaOptions"
+    }, {
+      "key" : "parallelism",
+      "javaType" : "java.lang.Integer",
+      "type" : "number",
+      "defaultValue" : null,
+      "description" : "When parallelism is not specified in connector, the parallelism in env is used by default. When parallelism is specified, it will override the parallelism in env.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.EnvCommonOptions",
+      "condition" : "Overrides env.parallelism when explicitly configured on this node"
+    } ],
+    "rules" : [ ]
+  }, {
+    "id" : "transform.common",
+    "plugin" : "",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.api.options.ConnectorCommonOptions",
+    "options" : [ {
+      "key" : "catalog",
+      "javaType" : "java.util.Map<java.lang.String,java.lang.String>",
+      "type" : "object",
+      "defaultValue" : null,
+      "description" : "configuration options for the catalog.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.table.CatalogOptions"
+    }, {
+      "key" : "plugin_input",
+      "javaType" : "java.util.List<java.lang.String>",
+      "type" : "array",
+      "defaultValue" : null,
+      "description" : "When plugin_input is not specified, the current plug-in processes the data set dataset output by the previous plugin in the configuration file. When plugin_input is specified, the current plug-in is processing the data set corresponding to this parameter.",
+      "fallbackKeys" : [ "source_table_name" ],
+      "origin" : "org.apache.seatunnel.api.options.ConnectorCommonOptions"
+    }, {
+      "key" : "plugin_name",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Name of the SPI plugin class.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.ConnectorCommonOptions"
+    }, {
+      "key" : "plugin_output",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "When plugin_output is not specified, the data processed by this plugin will not be registered as a data set (dataStream/dataset) that can be directly accessed by other plugins, or called a temporary table (table)When plugin_output is specified, the data processed by this plugin will be registered as a data set (dataStream/dataset) that can be directly accessed by other plugins, or called a temporary table (table) . The data set (dataStream/dataset) registered here can be directly accessed by other plugins by specifying plugin_input .",
+      "fallbackKeys" : [ "result_table_name" ],
+      "origin" : "org.apache.seatunnel.api.options.ConnectorCommonOptions"
+    }, {
+      "key" : "schema",
+      "javaType" : "java.util.Map<java.lang.String,java.lang.Object>",
+      "type" : "object",
+      "defaultValue" : null,
+      "description" : "SeaTunnel Schema",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.table.TableSchemaOptions"
+    }, {
+      "key" : "schema.fields",
+      "javaType" : "java.util.Map<java.lang.String,java.lang.Object>",
+      "type" : "object",
+      "defaultValue" : null,
+      "description" : "SeaTunnel Schema Fields",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.table.FieldOptions"
+    }, {
+      "key" : "tables_configs",
+      "javaType" : "java.util.List<java.util.Map<java.lang.String,java.lang.Object>>",
+      "type" : "array",
+      "defaultValue" : null,
+      "description" : "SeaTunnel Multi Table Schema, acts on structured and unstructured data sources. such as file, assert, mongodb, jdbc, paimon, doris, etc",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.table.TableSchemaOptions"
+    }, {
+      "key" : "parallelism",
+      "javaType" : "java.lang.Integer",
+      "type" : "number",
+      "defaultValue" : null,
+      "description" : "When parallelism is not specified in connector, the parallelism in env is used by default. When parallelism is specified, it will override the parallelism in env.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.EnvCommonOptions",
+      "condition" : "Overrides env.parallelism when explicitly configured on this node"
+    } ],
+    "rules" : [ ]
+  }, {
+    "id" : "source.Jdbc",
+    "plugin" : "Jdbc",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.source.JdbcSourceFactory",
+    "options" : [ {
+      "key" : "access_key_id",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "access_key_id",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.config.JdbcCommonOptions"
+    }, {
+      "key" : "compatible_mode",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The compatible mode of database, required when the database supports multiple compatible modes. For example, when using OceanBase database, you need to set it to 'mysql' or 'oracle'.",
+      "fallbackKeys" : [ "compatibleMode" ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.source.JdbcSourceFactory"
+    }, {
+      "key" : "connect_timeout_ms",
+      "javaType" : "java.lang.Integer",
+      "type" : "number",
+      "defaultValue" : 86400000,
+      "description" : "Connection timeout in milliseconds for establishing connection to the server. Default is 24h. Set to 0 for no timeout.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.config.JdbcCommonOptions"
+    }, {
+      "key" : "connection_check_timeout_sec",
+      "javaType" : "java.lang.Integer",
+      "type" : "number",
+      "defaultValue" : 30,
+      "description" : "connection check time second",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.source.JdbcSourceFactory"
+    }, {
+      "key" : "decimal_type_narrowing",
+      "javaType" : "java.lang.Boolean",
+      "type" : "boolean",
+      "defaultValue" : true,
+      "description" : "decimal type narrowing, if true, the decimal type will be narrowed to the int or long type if without loss of precision. Only support for Oracle at now.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.source.JdbcSourceFactory"
+    }, {
+      "key" : "dialect",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The appointed dialect, if it does not exist, is still obtained according to the url",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.source.JdbcSourceFactory"
+    }, {
+      "key" : "driver",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "driver",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.source.JdbcSourceFactory"
+    }, {
+      "key" : "fetch_size",
+      "javaType" : "java.lang.Integer",
+      "type" : "number",
+      "defaultValue" : 0,
+      "description" : "For queries that return a large number of objects, you can configure the row fetch size used in the query to improve performance by reducing the number database hits required to satisfy the selection criteria. Zero means use jdbc default value.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.source.JdbcSourceFactory"
+    }, {
+      "key" : "handle_blob_as_string",
+      "javaType" : "java.lang.Boolean",
+      "type" : "boolean",
+      "defaultValue" : false,
+      "description" : "If true, BLOB type will be converted to STRING type. Only support for Oracle at now.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.config.JdbcCommonOptions"
+    }, {
+      "key" : "int_type_narrowing",
+      "javaType" : "java.lang.Boolean",
+      "type" : "boolean",
+      "defaultValue" : true,
+      "description" : "int type narrowing, if true, the tinyint(1) type will be narrowed to the boolean type if without loss of precision. Support for MySQL at now.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.source.JdbcSourceFactory"
+    }, {
+      "key" : "kerberos_keytab_path",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "When use kerberos, we should set kerberos principal file path such as '/home/test/test_user.keytab'.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.config.JdbcCommonOptions"
+    }, {
+      "key" : "kerberos_principal",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "When use kerberos, we should set kerberos principal such as 'test_user@xxx'.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.config.JdbcCommonOptions"
+    }, {
+      "key" : "krb5_path",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : "/etc/krb5.conf",
+      "description" : "When use kerberos, we should set krb5 path file path such as '/seatunnel/krb5.conf' or use the default path '/etc/krb5.conf",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.config.JdbcCommonOptions"
+    }, {
+      "key" : "partition_column",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "partition column",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.source.JdbcSourceFactory"
+    }, {
+      "key" : "partition_lower_bound",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "partition lower bound",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.source.JdbcSourceFactory"
+    }, {
+      "key" : "partition_num",
+      "javaType" : "java.lang.Integer",
+      "type" : "number",
+      "defaultValue" : null,
+      "description" : "partition num",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.source.JdbcSourceFactory"
+    }, {
+      "key" : "partition_upper_bound",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "partition upper bound",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.source.JdbcSourceFactory"
+    }, {
+      "key" : "password",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "password",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.source.JdbcSourceFactory"
+    }, {
+      "key" : "properties",
+      "javaType" : "java.util.Map<java.lang.String,java.lang.String>",
+      "type" : "object",
+      "defaultValue" : null,
+      "description" : "additional connection configuration parameters",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.source.JdbcSourceFactory"
+    }, {
+      "key" : "query",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "query",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.source.JdbcSourceFactory"
+    }, {
+      "key" : "region",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "region",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.config.JdbcCommonOptions"
+    }, {
+      "key" : "schema",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "for databases that support the schema parameter, give it priority.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.config.JdbcCommonOptions"
+    }, {
+      "key" : "secret_access_key",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "secret_access_key",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.config.JdbcCommonOptions"
+    }, {
+      "key" : "skip_analyze",
+      "javaType" : "java.lang.Boolean",
+      "type" : "boolean",
+      "defaultValue" : false,
+      "description" : "Skip the analysis of table count",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.source.JdbcSourceFactory"
+    }, {
+      "key" : "socket_timeout_ms",
+      "javaType" : "java.lang.Integer",
+      "type" : "number",
+      "defaultValue" : 86400000,
+      "description" : "Socket timeout in milliseconds for reading data from the server. Default is 24h. Set to 0 for no timeout.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.config.JdbcCommonOptions"
+    }, {
+      "key" : "split.even-distribution.factor.lower-bound",
+      "javaType" : "java.lang.Double",
+      "type" : "number",
+      "defaultValue" : 0.05,
+      "description" : "The lower bound of split key distribution factor. The distribution factor is used to determine whether the table is evenly distribution or not. The table chunks would use evenly calculation optimization when the data distribution is even, and the query for splitting would happen when it is uneven. The distribution factor could be calculated by (MAX(id) - MIN(id) + 1) / rowCount.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.source.JdbcSourceFactory"
+    }, {
+      "key" : "split.even-distribution.factor.upper-bound",
+      "javaType" : "java.lang.Double",
+      "type" : "number",
+      "defaultValue" : 100.0,
+      "description" : "The upper bound of split key distribution factor. The distribution factor is used to determine whether the table is evenly distribution or not. The table chunks would use evenly calculation optimization when the data distribution is even, and the query for splitting would happen when it is uneven. The distribution factor could be calculated by (MAX(id) - MIN(id) + 1) / rowCount.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.source.JdbcSourceFactory"
+    }, {
+      "key" : "split.inverse-sampling.rate",
+      "javaType" : "java.lang.Integer",
+      "type" : "number",
+      "defaultValue" : 1000,
+      "description" : "The inverse of the sampling rate for the sample sharding strategy. The value represents the denominator of the sampling rate fraction. For example, a value of 1000 means a sampling rate of 1/1000. This parameter is used when the sample sharding strategy is triggered.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.source.JdbcSourceFactory"
+    }, {
+      "key" : "split.sample-sharding.threshold",
+      "javaType" : "java.lang.Integer",
+      "type" : "number",
+      "defaultValue" : 1000,
+      "description" : "The threshold of estimated shard count to trigger the sample sharding strategy. When the distribution factor is outside the upper and lower bounds, and if the estimated shard count (approximateRowCnt/chunkSize) exceeds this threshold, the sample sharding strategy will be used. This strategy can help to handle large datasets more efficiently. The default value is 1000 shards.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.source.JdbcSourceFactory"
+    }, {
+      "key" : "split.size",
+      "javaType" : "java.lang.Integer",
+      "type" : "number",
+      "defaultValue" : 8096,
+      "description" : "The split size (number of rows) of table snapshot, captured tables are split into multiple splits when read     of table.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.source.JdbcSourceFactory"
+    }, {
+      "key" : "split.string_split_mode",
+      "javaType" : "org.apache.seatunnel.connectors.seatunnel.jdbc.source.StringSplitMode",
+      "type" : "string",
+      "defaultValue" : "SAMPLE",
+      "description" : "Supports different string splitting algorithms. By default, `sample` is used to determine the split by sampling the string value. You can switch to `charset_based` to enable charset-based string splitting algorithm. When set to `charset_based`, the algorithm assumes characters of partition_column are within ASCII range 32-126, which covers most character-based splitting scenarios.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.source.JdbcSourceFactory",
+      "enumValues" : [ "sample", "charset_based" ]
+    }, {
+      "key" : "split.string_split_mode_collate",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Specifies the collation to use when string_split_mode is set to `charset_based` and the table has a special collation. If not specified, the database's default collation will be used.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.source.JdbcSourceFactory"
+    }, {
+      "key" : "table_list",
+      "javaType" : "java.util.List<org.apache.seatunnel.connectors.seatunnel.jdbc.config.JdbcSourceTableConfig>",
+      "type" : "array",
+      "defaultValue" : null,
+      "description" : "table list config",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.source.JdbcSourceFactory"
+    }, {
+      "key" : "table_path",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "table full path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.source.JdbcSourceFactory"
+    }, {
+      "key" : "url",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "url",
+      "fallbackKeys" : [ "base-url" ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.source.JdbcSourceFactory"
+    }, {
+      "key" : "use_kerberos",
+      "javaType" : "java.lang.Boolean",
+      "type" : "boolean",
+      "defaultValue" : false,
+      "description" : "Whether to enable Kerberos, default is false.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.config.JdbcCommonOptions"
+    }, {
+      "key" : "use_regex",
+      "javaType" : "java.lang.Boolean",
+      "type" : "boolean",
+      "defaultValue" : false,
+      "description" : "Use regular expression for table path matching",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.source.JdbcSourceFactory"
+    }, {
+      "key" : "use_select_count",
+      "javaType" : "java.lang.Boolean",
+      "type" : "boolean",
+      "defaultValue" : false,
+      "description" : "Use select count for table count",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.source.JdbcSourceFactory"
+    }, {
+      "key" : "username",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "user",
+      "fallbackKeys" : [ "user" ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.source.JdbcSourceFactory"
+    }, {
+      "key" : "where_condition",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Common row filter conditions for all tables/queries, must start with `where`. for example `where id > 100`",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.source.JdbcSourceFactory"
+    } ],
+    "rules" : [ {
+      "kind" : "AbsolutelyRequiredOptions",
+      "keys" : [ "url", "driver" ]
+    } ]
+  }, {
+    "id" : "sink.Jdbc",
+    "plugin" : "Jdbc",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.sink.JdbcSinkFactory",
+    "options" : [ {
+      "key" : "access_key_id",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "access_key_id",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.config.JdbcCommonOptions"
+    }, {
+      "key" : "auto_commit",
+      "javaType" : "java.lang.Boolean",
+      "type" : "boolean",
+      "defaultValue" : true,
+      "description" : "auto commit",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.sink.JdbcSinkFactory"
+    }, {
+      "key" : "batch_size",
+      "javaType" : "java.lang.Integer",
+      "type" : "number",
+      "defaultValue" : 1000,
+      "description" : "batch size",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.sink.JdbcSinkFactory"
+    }, {
+      "key" : "compatible_mode",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The compatible mode of database, required when the database supports multiple compatible modes. For example, when using OceanBase database, you need to set it to 'mysql' or 'oracle'.",
+      "fallbackKeys" : [ "compatibleMode" ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.sink.JdbcSinkFactory"
+    }, {
+      "key" : "connect_timeout_ms",
+      "javaType" : "java.lang.Integer",
+      "type" : "number",
+      "defaultValue" : 86400000,
+      "description" : "Connection timeout in milliseconds for establishing connection to the server. Default is 24h. Set to 0 for no timeout.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.config.JdbcCommonOptions"
+    }, {
+      "key" : "connection_check_timeout_sec",
+      "javaType" : "java.lang.Integer",
+      "type" : "number",
+      "defaultValue" : 30,
+      "description" : "connection check time second",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.sink.JdbcSinkFactory"
+    }, {
+      "key" : "create_index",
+      "javaType" : "java.lang.Boolean",
+      "type" : "boolean",
+      "defaultValue" : true,
+      "description" : "Create index or not when auto create table",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.sink.JdbcSinkFactory"
+    }, {
+      "key" : "custom_sql",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "custom_sql",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.sink.JdbcSinkFactory"
+    }, {
+      "key" : "data_save_mode",
+      "javaType" : "org.apache.seatunnel.api.sink.DataSaveMode",
+      "type" : "string",
+      "defaultValue" : "APPEND_DATA",
+      "description" : "data_save_mode",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.sink.JdbcSinkFactory",
+      "enumValues" : [ "DROP_DATA", "APPEND_DATA", "CUSTOM_PROCESSING", "ERROR_WHEN_DATA_EXISTS" ]
+    }, {
+      "key" : "database",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "database",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.sink.JdbcSinkFactory"
+    }, {
+      "key" : "decimal_type_narrowing",
+      "javaType" : "java.lang.Boolean",
+      "type" : "boolean",
+      "defaultValue" : true,
+      "description" : "decimal type narrowing, if true, the decimal type will be narrowed to the int or long type if without loss of precision. Only support for Oracle at now.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.config.JdbcCommonOptions"
+    }, {
+      "key" : "dialect",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The appointed dialect, if it does not exist, is still obtained according to the url",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.sink.JdbcSinkFactory"
+    }, {
+      "key" : "driver",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "driver",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.sink.JdbcSinkFactory"
+    }, {
+      "key" : "enable_upsert",
+      "javaType" : "java.lang.Boolean",
+      "type" : "boolean",
+      "defaultValue" : true,
+      "description" : "enable upsert by primary_keys exist",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.sink.JdbcSinkFactory"
+    }, {
+      "key" : "field_ide",
+      "javaType" : "org.apache.seatunnel.connectors.seatunnel.jdbc.internal.dialect.dialectenum.FieldIdeEnum",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Whether case conversion is required",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.sink.JdbcSinkFactory",
+      "enumValues" : [ "ORIGINAL", "UPPERCASE", "LOWERCASE" ]
+    }, {
+      "key" : "generate_sink_sql",
+      "javaType" : "java.lang.Boolean",
+      "type" : "boolean",
+      "defaultValue" : false,
+      "description" : "generate sql using the database table",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.sink.JdbcSinkFactory"
+    }, {
+      "key" : "handle_blob_as_string",
+      "javaType" : "java.lang.Boolean",
+      "type" : "boolean",
+      "defaultValue" : false,
+      "description" : "If true, BLOB type will be converted to STRING type. Only support for Oracle at now.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.config.JdbcCommonOptions"
+    }, {
+      "key" : "int_type_narrowing",
+      "javaType" : "java.lang.Boolean",
+      "type" : "boolean",
+      "defaultValue" : true,
+      "description" : "int type narrowing, if true, the tinyint(1) type will be narrowed to the boolean type if without loss of precision. Support for MySQL at now.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.config.JdbcCommonOptions"
+    }, {
+      "key" : "is_exactly_once",
+      "javaType" : "java.lang.Boolean",
+      "type" : "boolean",
+      "defaultValue" : false,
+      "description" : "exactly once",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.sink.JdbcSinkFactory"
+    }, {
+      "key" : "is_primary_key_updated",
+      "javaType" : "java.lang.Boolean",
+      "type" : "boolean",
+      "defaultValue" : true,
+      "description" : "is the primary key updated when performing an update operation",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.sink.JdbcSinkFactory"
+    }, {
+      "key" : "kerberos_keytab_path",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "When use kerberos, we should set kerberos principal file path such as '/home/test/test_user.keytab'.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.config.JdbcCommonOptions"
+    }, {
+      "key" : "kerberos_principal",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "When use kerberos, we should set kerberos principal such as 'test_user@xxx'.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.config.JdbcCommonOptions"
+    }, {
+      "key" : "krb5_path",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : "/etc/krb5.conf",
+      "description" : "When use kerberos, we should set krb5 path file path such as '/seatunnel/krb5.conf' or use the default path '/etc/krb5.conf",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.config.JdbcCommonOptions"
+    }, {
+      "key" : "max_commit_attempts",
+      "javaType" : "java.lang.Integer",
+      "type" : "number",
+      "defaultValue" : 3,
+      "description" : "max commit attempts",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.sink.JdbcSinkFactory"
+    }, {
+      "key" : "max_retries",
+      "javaType" : "java.lang.Integer",
+      "type" : "number",
+      "defaultValue" : 0,
+      "description" : "max_retries",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.sink.JdbcSinkFactory"
+    }, {
+      "key" : "multi_table_sink_replica",
+      "javaType" : "java.lang.Integer",
+      "type" : "number",
+      "defaultValue" : 1,
+      "description" : "The replica number of multi table sink writer",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.sink.JdbcSinkFactory"
+    }, {
+      "key" : "password",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "password",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.sink.JdbcSinkFactory"
+    }, {
+      "key" : "primary_keys",
+      "javaType" : "java.util.List<java.lang.String>",
+      "type" : "array",
+      "defaultValue" : null,
+      "description" : "primary keys",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.sink.JdbcSinkFactory"
+    }, {
+      "key" : "properties",
+      "javaType" : "java.util.Map<java.lang.String,java.lang.String>",
+      "type" : "object",
+      "defaultValue" : null,
+      "description" : "additional connection configuration parameters",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.config.JdbcCommonOptions"
+    }, {
+      "key" : "query",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "query",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.sink.JdbcSinkFactory"
+    }, {
+      "key" : "region",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "region",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.config.JdbcCommonOptions"
+    }, {
+      "key" : "schema",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "for databases that support the schema parameter, give it priority.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.config.JdbcCommonOptions"
+    }, {
+      "key" : "schema_save_mode",
+      "javaType" : "org.apache.seatunnel.api.sink.SchemaSaveMode",
+      "type" : "string",
+      "defaultValue" : "CREATE_SCHEMA_WHEN_NOT_EXIST",
+      "description" : "schema_save_mode",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.sink.JdbcSinkFactory",
+      "enumValues" : [ "RECREATE_SCHEMA", "CREATE_SCHEMA_WHEN_NOT_EXIST", "ERROR_WHEN_SCHEMA_NOT_EXIST", "IGNORE" ]
+    }, {
+      "key" : "secret_access_key",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "secret_access_key",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.config.JdbcCommonOptions"
+    }, {
+      "key" : "socket_timeout_ms",
+      "javaType" : "java.lang.Integer",
+      "type" : "number",
+      "defaultValue" : 86400000,
+      "description" : "Socket timeout in milliseconds for reading data from the server. Default is 24h. Set to 0 for no timeout.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.config.JdbcCommonOptions"
+    }, {
+      "key" : "support_upsert_by_insert_only",
+      "javaType" : "java.lang.Boolean",
+      "type" : "boolean",
+      "defaultValue" : false,
+      "description" : "support upsert by insert only",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.sink.JdbcSinkFactory"
+    }, {
+      "key" : "table",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "table",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.config.JdbcSinkOptions"
+    }, {
+      "key" : "tablePrefix",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The table prefix name added when the table is automatically created",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.sink.JdbcSinkFactory"
+    }, {
+      "key" : "tableSuffix",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The table suffix name added when the table is automatically created",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.sink.JdbcSinkFactory"
+    }, {
+      "key" : "transaction_timeout_sec",
+      "javaType" : "java.lang.Integer",
+      "type" : "number",
+      "defaultValue" : -1,
+      "description" : "transaction timeout (second)",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.sink.JdbcSinkFactory"
+    }, {
+      "key" : "url",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "url",
+      "fallbackKeys" : [ "base-url" ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.sink.JdbcSinkFactory"
+    }, {
+      "key" : "use_copy_statement",
+      "javaType" : "java.lang.Boolean",
+      "type" : "boolean",
+      "defaultValue" : false,
+      "description" : "support copy in statement (postgresql)",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.sink.JdbcSinkFactory"
+    }, {
+      "key" : "use_kerberos",
+      "javaType" : "java.lang.Boolean",
+      "type" : "boolean",
+      "defaultValue" : false,
+      "description" : "Whether to enable Kerberos, default is false.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.config.JdbcCommonOptions"
+    }, {
+      "key" : "username",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "user",
+      "fallbackKeys" : [ "user" ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.sink.JdbcSinkFactory"
+    }, {
+      "key" : "xa_data_source_class_name",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "data source class name",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.sink.JdbcSinkFactory"
+    } ],
+    "rules" : [ {
+      "kind" : "AbsolutelyRequiredOptions",
+      "keys" : [ "url", "driver", "schema_save_mode", "data_save_mode" ]
+    }, {
+      "kind" : "ConditionalRequiredOptions",
+      "keys" : [ "xa_data_source_class_name", "max_commit_attempts", "transaction_timeout_sec" ],
+      "condition" : "'is_exactly_once' == true"
+    }, {
+      "kind" : "ConditionalRequiredOptions",
+      "keys" : [ "max_retries" ],
+      "condition" : "'is_exactly_once' == false"
+    }, {
+      "kind" : "ConditionalRequiredOptions",
+      "keys" : [ "database" ],
+      "condition" : "'generate_sink_sql' == true"
+    }, {
+      "kind" : "ConditionalRequiredOptions",
+      "keys" : [ "query" ],
+      "condition" : "'generate_sink_sql' == false"
+    }, {
+      "kind" : "ConditionalRequiredOptions",
+      "keys" : [ "custom_sql" ],
+      "condition" : "'data_save_mode' == CUSTOM_PROCESSING"
+    } ]
+  }, {
+    "id" : "transform.DefineSinkType",
+    "plugin" : "DefineSinkType",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.adaptsink.DefineSinkTypeTransformFactory",
+    "options" : [ {
+      "key" : "columns",
+      "javaType" : "java.util.List<org.apache.seatunnel.transform.adaptsink.DefineSinkTypeTransformConfig$DefineColumnType>",
+      "type" : "array",
+      "defaultValue" : null,
+      "description" : "The columns to be defined, the name and type of the column must be set",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.adaptsink.DefineSinkTypeTransformFactory"
+    }, {
+      "key" : "table_match_regex",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : ".*",
+      "description" : "The regex to match the table path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.adaptsink.DefineSinkTypeTransformFactory"
+    }, {
+      "key" : "table_transform",
+      "javaType" : "java.util.List<java.util.Map<java.lang.String,java.lang.Object>>",
+      "type" : "array",
+      "defaultValue" : [ ],
+      "description" : "The table transform config",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.adaptsink.DefineSinkTypeTransformFactory"
+    } ],
+    "rules" : [ {
+      "kind" : "AbsolutelyRequiredOptions",
+      "keys" : [ "columns" ]
+    } ]
+  }, {
+    "id" : "transform.Copy",
+    "plugin" : "Copy",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.copy.CopyFieldTransformFactory",
+    "options" : [ {
+      "key" : "dest_field",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Copy Src field to Dest field",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.copy.CopyFieldTransformFactory"
+    }, {
+      "key" : "fields",
+      "javaType" : "java.util.Map<java.lang.String,java.lang.String>",
+      "type" : "object",
+      "defaultValue" : null,
+      "description" : "Specify the field copy relationship between input and output",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.copy.CopyFieldTransformFactory"
+    }, {
+      "key" : "src_field",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Src field you want to copy",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.copy.CopyFieldTransformFactory"
+    }, {
+      "key" : "table_match_regex",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : ".*",
+      "description" : "The regex to match the table path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.copy.CopyFieldTransformFactory"
+    }, {
+      "key" : "table_transform",
+      "javaType" : "java.util.List<java.util.Map<java.lang.String,java.lang.Object>>",
+      "type" : "array",
+      "defaultValue" : [ ],
+      "description" : "The table transform config",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.copy.CopyFieldTransformFactory"
+    } ],
+    "rules" : [ {
+      "kind" : "BundledRequiredOptions",
+      "keys" : [ "src_field", "dest_field" ]
+    }, {
+      "kind" : "BundledRequiredOptions",
+      "keys" : [ "fields" ]
+    } ]
+  }, {
+    "id" : "transform.DynamicCompile",
+    "plugin" : "DynamicCompile",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.dynamiccompile.DynamicCompileTransformFactory",
+    "options" : [ {
+      "key" : "absolute_path",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "absolute_path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.dynamiccompile.DynamicCompileTransformFactory"
+    }, {
+      "key" : "compile_language",
+      "javaType" : "org.apache.seatunnel.transform.dynamiccompile.CompileLanguage",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "compile language",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.dynamiccompile.DynamicCompileTransformFactory",
+      "enumValues" : [ "GROOVY", "JAVA", "SCALA" ]
+    }, {
+      "key" : "compile_pattern",
+      "javaType" : "org.apache.seatunnel.transform.dynamiccompile.CompilePattern",
+      "type" : "string",
+      "defaultValue" : "SOURCE_CODE",
+      "description" : "compile_pattern",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.dynamiccompile.DynamicCompileTransformFactory",
+      "enumValues" : [ "SOURCE_CODE", "ABSOLUTE_PATH" ]
+    }, {
+      "key" : "source_code",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "source_code to compile",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.dynamiccompile.DynamicCompileTransformFactory"
+    }, {
+      "key" : "table_match_regex",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : ".*",
+      "description" : "The regex to match the table path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.dynamiccompile.DynamicCompileTransformFactory"
+    }, {
+      "key" : "table_transform",
+      "javaType" : "java.util.List<java.util.Map<java.lang.String,java.lang.Object>>",
+      "type" : "array",
+      "defaultValue" : [ ],
+      "description" : "The table transform config",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.dynamiccompile.DynamicCompileTransformFactory"
+    } ],
+    "rules" : [ {
+      "kind" : "ConditionalRequiredOptions",
+      "keys" : [ "source_code" ],
+      "condition" : "'compile_pattern' == SOURCE_CODE"
+    }, {
+      "kind" : "ConditionalRequiredOptions",
+      "keys" : [ "absolute_path" ],
+      "condition" : "'compile_pattern' == ABSOLUTE_PATH"
+    } ]
+  }, {
+    "id" : "transform.FieldMapper",
+    "plugin" : "FieldMapper",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.fieldmapper.FieldMapperTransformFactory",
+    "options" : [ {
+      "key" : "field_mapper",
+      "javaType" : "java.util.Map<java.lang.String,java.lang.String>",
+      "type" : "object",
+      "defaultValue" : null,
+      "description" : "Specify the field mapping relationship between input and output",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.fieldmapper.FieldMapperTransformFactory"
+    }, {
+      "key" : "table_match_regex",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : ".*",
+      "description" : "The regex to match the table path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.fieldmapper.FieldMapperTransformFactory"
+    }, {
+      "key" : "table_transform",
+      "javaType" : "java.util.List<java.util.Map<java.lang.String,java.lang.Object>>",
+      "type" : "array",
+      "defaultValue" : [ ],
+      "description" : "The table transform config",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.fieldmapper.FieldMapperTransformFactory"
+    } ],
+    "rules" : [ ]
+  }, {
+    "id" : "transform.Filter",
+    "plugin" : "Filter",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.filter.FilterFieldTransformFactory",
+    "options" : [ {
+      "key" : "exclude_fields",
+      "javaType" : "java.util.List<java.lang.String>",
+      "type" : "array",
+      "defaultValue" : null,
+      "description" : "The list of fields that need to be deleted",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.filter.FilterFieldTransformFactory"
+    }, {
+      "key" : "include_fields",
+      "javaType" : "java.util.List<java.lang.String>",
+      "type" : "array",
+      "defaultValue" : null,
+      "description" : "The list of fields that need to be kept.",
+      "fallbackKeys" : [ "fields" ],
+      "origin" : "org.apache.seatunnel.transform.filter.FilterFieldTransformFactory"
+    }, {
+      "key" : "table_match_regex",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : ".*",
+      "description" : "The regex to match the table path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.filter.FilterFieldTransformFactory"
+    }, {
+      "key" : "table_transform",
+      "javaType" : "java.util.List<java.util.Map<java.lang.String,java.lang.Object>>",
+      "type" : "array",
+      "defaultValue" : [ ],
+      "description" : "The table transform config",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.filter.FilterFieldTransformFactory"
+    } ],
+    "rules" : [ ]
+  }, {
+    "id" : "transform.FilterRowKind",
+    "plugin" : "FilterRowKind",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.filterrowkind.FilterRowKindTransformFactory",
+    "options" : [ {
+      "key" : "exclude_kinds",
+      "javaType" : "java.util.List<org.apache.seatunnel.api.table.type.RowKind>",
+      "type" : "array",
+      "defaultValue" : null,
+      "description" : "the row kinds to exclude",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.filterrowkind.FilterRowKindTransformFactory"
+    }, {
+      "key" : "include_kinds",
+      "javaType" : "java.util.List<org.apache.seatunnel.api.table.type.RowKind>",
+      "type" : "array",
+      "defaultValue" : null,
+      "description" : "the row kinds to include",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.filterrowkind.FilterRowKindTransformFactory"
+    }, {
+      "key" : "table_match_regex",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : ".*",
+      "description" : "The regex to match the table path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.filterrowkind.FilterRowKindTransformFactory"
+    }, {
+      "key" : "table_transform",
+      "javaType" : "java.util.List<java.util.Map<java.lang.String,java.lang.Object>>",
+      "type" : "array",
+      "defaultValue" : [ ],
+      "description" : "The table transform config",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.filterrowkind.FilterRowKindTransformFactory"
+    } ],
+    "rules" : [ ]
+  }, {
+    "id" : "transform.JsonPath",
+    "plugin" : "JsonPath",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.jsonpath.JsonPathTransformFactory",
+    "options" : [ {
+      "key" : "columns",
+      "javaType" : "java.util.List<java.util.Map<java.lang.String,java.lang.Object>>",
+      "type" : "array",
+      "defaultValue" : null,
+      "description" : "columns",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.jsonpath.JsonPathTransformFactory"
+    }, {
+      "key" : "row_error_handle_way",
+      "javaType" : "org.apache.seatunnel.transform.common.ErrorHandleWay",
+      "type" : "string",
+      "defaultValue" : "FAIL",
+      "description" : "The processing method of data format error. The default value is fail, and the optional value is (fail, skip). When fail is selected, data format error will block and an exception will be thrown. When skip is selected, data format error will skip this line data.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.jsonpath.JsonPathTransformFactory",
+      "enumValues" : [ "FAIL", "SKIP", "SKIP_ROW", "ROUTE_TO_TABLE" ]
+    }, {
+      "key" : "table_match_regex",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : ".*",
+      "description" : "The regex to match the table path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.jsonpath.JsonPathTransformFactory"
+    }, {
+      "key" : "table_transform",
+      "javaType" : "java.util.List<java.util.Map<java.lang.String,java.lang.Object>>",
+      "type" : "array",
+      "defaultValue" : [ ],
+      "description" : "The table transform config",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.jsonpath.JsonPathTransformFactory"
+    } ],
+    "rules" : [ ]
+  }, {
+    "id" : "transform.Metadata",
+    "plugin" : "Metadata",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.metadata.MetadataTransformFactory",
+    "options" : [ {
+      "key" : "metadata_fields",
+      "javaType" : "java.util.Map<java.lang.String,java.lang.String>",
+      "type" : "object",
+      "defaultValue" : null,
+      "description" : "Specify the metadata field relationship between input and output",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.metadata.MetadataTransformFactory"
+    }, {
+      "key" : "table_match_regex",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : ".*",
+      "description" : "The regex to match the table path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.metadata.MetadataTransformFactory"
+    }, {
+      "key" : "table_transform",
+      "javaType" : "java.util.List<java.util.Map<java.lang.String,java.lang.Object>>",
+      "type" : "array",
+      "defaultValue" : [ ],
+      "description" : "The table transform config",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.metadata.MetadataTransformFactory"
+    } ],
+    "rules" : [ ]
+  }, {
+    "id" : "transform.Embedding",
+    "plugin" : "Embedding",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.nlpmodel.embedding.EmbeddingTransformFactory",
+    "options" : [ {
+      "key" : "api_key",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The API key of LLM/Embedding",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.embedding.EmbeddingTransformFactory"
+    }, {
+      "key" : "api_path",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The API of LLM/Embedding",
+      "fallbackKeys" : [ "openai.api_path" ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.embedding.EmbeddingTransformFactory"
+    }, {
+      "key" : "aws_region",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The AWS region for Amazon Bedrock service.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.embedding.EmbeddingTransformFactory"
+    }, {
+      "key" : "custom_config",
+      "javaType" : "java.util.Map<java.lang.String,java.lang.Object>",
+      "type" : "object",
+      "defaultValue" : null,
+      "description" : "The custom config of the custom model.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.embedding.EmbeddingTransformFactory"
+    }, {
+      "key" : "dimension",
+      "javaType" : "java.lang.Integer",
+      "type" : "number",
+      "defaultValue" : 2048,
+      "description" : "dimension",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.embedding.EmbeddingTransformFactory"
+    }, {
+      "key" : "model",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The model of LLM/Embedding, eg: if the model provider is OpenAI LLM, the model should be gpt-3.5-turbo/gpt-4o-mini, etc.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.embedding.EmbeddingTransformFactory"
+    }, {
+      "key" : "model_provider",
+      "javaType" : "org.apache.seatunnel.transform.nlpmodel.ModelProvider",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The model provider of LLM/Embedding",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.embedding.EmbeddingTransformFactory",
+      "enumValues" : [ "AMAZON", "OPENAI", "DOUBAO", "QIANFAN", "KIMIAI", "DEEPSEEK", "MICROSOFT", "ZHIPU", "CUSTOM", "LOCAL" ]
+    }, {
+      "key" : "oauth_path",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The Oauth path of LLM/Embedding",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.embedding.EmbeddingTransformFactory"
+    }, {
+      "key" : "process_batch_size",
+      "javaType" : "java.lang.Integer",
+      "type" : "number",
+      "defaultValue" : 100,
+      "description" : "The row batch size of each process",
+      "fallbackKeys" : [ "inference_batch_size" ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.embedding.EmbeddingTransformFactory"
+    }, {
+      "key" : "secret_key",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The Secret key of LLM/Embedding",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.embedding.EmbeddingTransformFactory"
+    }, {
+      "key" : "single_vectorized_input_number",
+      "javaType" : "java.lang.Integer",
+      "type" : "number",
+      "defaultValue" : 1,
+      "description" : "The number of single vectorized inputs, default is 1 , which means 1 inputs will be vectorized in one request , eg: qianfan only allows a maximum of 16 simultaneous messages, depending on your own settings, etc",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.embedding.EmbeddingTransformFactory"
+    }, {
+      "key" : "table_match_regex",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : ".*",
+      "description" : "The regex to match the table path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.embedding.EmbeddingTransformFactory"
+    }, {
+      "key" : "table_transform",
+      "javaType" : "java.util.List<java.util.Map<java.lang.String,java.lang.Object>>",
+      "type" : "array",
+      "defaultValue" : [ ],
+      "description" : "The table transform config",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.embedding.EmbeddingTransformFactory"
+    }, {
+      "key" : "vectorization_fields",
+      "javaType" : "java.util.Map<java.lang.String,java.lang.Object>",
+      "type" : "object",
+      "defaultValue" : null,
+      "description" : "Specify the field vectorization relationship between input and output. Supports multiple formats: 1. String format: 'fieldName' (defaults to text modality) 2. Object format with modality and format: {field: 'fieldName', modality: 'modalityType', format: 'formatType'} where modality can be 'image/jpeg', 'video/mp4' etc. , format can be 'url', 'binary'. ",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.embedding.EmbeddingTransformFactory"
+    } ],
+    "rules" : [ {
+      "kind" : "ConditionalRequiredOptions",
+      "keys" : [ "api_key", "secret_key", "aws_region", "model", "dimension" ],
+      "condition" : "'model_provider' == AMAZON"
+    }, {
+      "kind" : "ConditionalRequiredOptions",
+      "keys" : [ "api_key" ],
+      "condition" : "'model_provider' == OPENAI || 'model_provider' == DOUBAO"
+    }, {
+      "kind" : "ConditionalRequiredOptions",
+      "keys" : [ "api_key", "secret_key", "oauth_path" ],
+      "condition" : "'model_provider' == QIANFAN"
+    }, {
+      "kind" : "ConditionalRequiredOptions",
+      "keys" : [ "custom_config" ],
+      "condition" : "'model_provider' == CUSTOM"
+    }, {
+      "kind" : "ConditionalRequiredOptions",
+      "keys" : [ "dimension" ],
+      "condition" : "'model_provider' == ZHIPU"
+    } ]
+  }, {
+    "id" : "transform.LLM",
+    "plugin" : "LLM",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.nlpmodel.llm.LLMTransformFactory",
+    "options" : [ {
+      "key" : "api_key",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The API key of LLM/Embedding",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.llm.LLMTransformFactory"
+    }, {
+      "key" : "api_path",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The API of LLM/Embedding",
+      "fallbackKeys" : [ "openai.api_path" ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.llm.LLMTransformFactory"
+    }, {
+      "key" : "custom_config",
+      "javaType" : "java.util.Map<java.lang.String,java.lang.Object>",
+      "type" : "object",
+      "defaultValue" : null,
+      "description" : "The custom config of the custom model.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.llm.LLMTransformFactory"
+    }, {
+      "key" : "model",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The model of LLM/Embedding, eg: if the model provider is OpenAI LLM, the model should be gpt-3.5-turbo/gpt-4o-mini, etc.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.llm.LLMTransformFactory"
+    }, {
+      "key" : "model_provider",
+      "javaType" : "org.apache.seatunnel.transform.nlpmodel.ModelProvider",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The model provider of LLM/Embedding",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.llm.LLMTransformFactory",
+      "enumValues" : [ "AMAZON", "OPENAI", "DOUBAO", "QIANFAN", "KIMIAI", "DEEPSEEK", "MICROSOFT", "ZHIPU", "CUSTOM", "LOCAL" ]
+    }, {
+      "key" : "oauth_path",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The Oauth path of LLM/Embedding",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.llm.LLMTransformFactory"
+    }, {
+      "key" : "output_data_type",
+      "javaType" : "org.apache.seatunnel.api.table.type.SqlType",
+      "type" : "string",
+      "defaultValue" : "STRING",
+      "description" : "The output data type of LLM",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.llm.LLMTransformFactory",
+      "enumValues" : [ "ARRAY", "MAP", "STRING", "BOOLEAN", "TINYINT", "SMALLINT", "INT", "BIGINT", "FLOAT", "DOUBLE", "DECIMAL", "NULL", "BYTES", "DATE", "TIME", "TIMESTAMP", "TIMESTAMP_TZ", "BINARY_VECTOR", "FLOAT_VECTOR", "FLOAT16_VECTOR", "BFLOAT16_VECTOR", "SPARSE_FLOAT_VECTOR", "ROW", "MULTIPLE_ROW" ]
+    }, {
+      "key" : "process_batch_size",
+      "javaType" : "java.lang.Integer",
+      "type" : "number",
+      "defaultValue" : 100,
+      "description" : "The row batch size of each process",
+      "fallbackKeys" : [ "inference_batch_size" ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.llm.LLMTransformFactory"
+    }, {
+      "key" : "prompt",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The prompt of LLM",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.llm.LLMTransformFactory"
+    }, {
+      "key" : "secret_key",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The Secret key of LLM/Embedding",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.llm.LLMTransformFactory"
+    }, {
+      "key" : "table_match_regex",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : ".*",
+      "description" : "The regex to match the table path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.llm.LLMTransformFactory"
+    }, {
+      "key" : "table_transform",
+      "javaType" : "java.util.List<java.util.Map<java.lang.String,java.lang.Object>>",
+      "type" : "array",
+      "defaultValue" : [ ],
+      "description" : "The table transform config",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.llm.LLMTransformFactory"
+    } ],
+    "rules" : [ {
+      "kind" : "ConditionalRequiredOptions",
+      "keys" : [ "api_key" ],
+      "condition" : "'model_provider' == OPENAI || 'model_provider' == DOUBAO || 'model_provider' == MICROSOFT"
+    }, {
+      "kind" : "ConditionalRequiredOptions",
+      "keys" : [ "api_key", "secret_key", "oauth_path" ],
+      "condition" : "'model_provider' == QIANFAN"
+    }, {
+      "kind" : "ConditionalRequiredOptions",
+      "keys" : [ "custom_config" ],
+      "condition" : "'model_provider' == CUSTOM"
+    } ]
+  }, {
+    "id" : "transform.RegexExtract",
+    "plugin" : "RegexExtract",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.regexextract.RegexExtractTransformFactory",
+    "options" : [ {
+      "key" : "default_values",
+      "javaType" : "java.util.List<java.lang.String>",
+      "type" : "array",
+      "defaultValue" : null,
+      "description" : "Default values for output fields when regex pattern does not match",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.regexextract.RegexExtractTransformFactory"
+    }, {
+      "key" : "output_fields",
+      "javaType" : "java.util.List<java.lang.String>",
+      "type" : "array",
+      "defaultValue" : null,
+      "description" : "Output field names for extracted groups",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.regexextract.RegexExtractTransformFactory"
+    }, {
+      "key" : "regex_pattern",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Regex pattern with capture groups",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.regexextract.RegexExtractTransformFactory"
+    }, {
+      "key" : "source_field",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Source field to extract from",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.regexextract.RegexExtractTransformFactory"
+    }, {
+      "key" : "table_transform",
+      "javaType" : "java.util.List<java.util.Map<java.lang.String,java.lang.Object>>",
+      "type" : "array",
+      "defaultValue" : [ ],
+      "description" : "The table transform config",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.regexextract.RegexExtractTransformFactory"
+    } ],
+    "rules" : [ {
+      "kind" : "AbsolutelyRequiredOptions",
+      "keys" : [ "source_field", "regex_pattern", "output_fields" ]
+    } ]
+  }, {
+    "id" : "transform.FieldRename",
+    "plugin" : "FieldRename",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.rename.FieldRenameTransformFactory",
+    "options" : [ {
+      "key" : "convert_case",
+      "javaType" : "org.apache.seatunnel.transform.rename.ConvertCase",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Convert to uppercase or lowercase",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.rename.FieldRenameTransformFactory",
+      "enumValues" : [ "LOWER", "UPPER" ]
+    }, {
+      "key" : "prefix",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Add prefix for field name",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.rename.FieldRenameTransformFactory"
+    }, {
+      "key" : "replacements_with_regex",
+      "javaType" : "java.util.List<org.apache.seatunnel.transform.rename.FieldRenameConfig$ReplacementsWithRegex>",
+      "type" : "array",
+      "defaultValue" : null,
+      "description" : "The regex of replace fields name to ",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.rename.FieldRenameTransformFactory"
+    }, {
+      "key" : "specific",
+      "javaType" : "java.util.List<org.apache.seatunnel.transform.rename.FieldRenameConfig$SpecificModify>",
+      "type" : "array",
+      "defaultValue" : null,
+      "description" : "The specific modify field name",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.rename.FieldRenameTransformFactory"
+    }, {
+      "key" : "suffix",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Add suffix for field name",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.rename.FieldRenameTransformFactory"
+    }, {
+      "key" : "table_match_regex",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : ".*",
+      "description" : "The regex to match the table path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.rename.FieldRenameTransformFactory"
+    }, {
+      "key" : "table_transform",
+      "javaType" : "java.util.List<java.util.Map<java.lang.String,java.lang.Object>>",
+      "type" : "array",
+      "defaultValue" : [ ],
+      "description" : "The table transform config",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.rename.FieldRenameTransformFactory"
+    } ],
+    "rules" : [ ]
+  }, {
+    "id" : "transform.TableRename",
+    "plugin" : "TableRename",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.rename.TableRenameTransformFactory",
+    "options" : [ {
+      "key" : "convert_case",
+      "javaType" : "org.apache.seatunnel.transform.rename.ConvertCase",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Convert to uppercase or lowercase",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.rename.TableRenameTransformFactory",
+      "enumValues" : [ "LOWER", "UPPER" ]
+    }, {
+      "key" : "prefix",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Add prefix for table name",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.rename.TableRenameTransformFactory"
+    }, {
+      "key" : "replacements_with_regex",
+      "javaType" : "java.util.List<org.apache.seatunnel.transform.rename.TableRenameConfig$ReplacementsWithRegex>",
+      "type" : "array",
+      "defaultValue" : null,
+      "description" : "The regex of replace table name to ",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.rename.TableRenameTransformFactory"
+    }, {
+      "key" : "suffix",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Add suffix for table name",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.rename.TableRenameTransformFactory"
+    }, {
+      "key" : "table_match_regex",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : ".*",
+      "description" : "The regex to match the table path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.rename.TableRenameTransformFactory"
+    }, {
+      "key" : "table_transform",
+      "javaType" : "java.util.List<java.util.Map<java.lang.String,java.lang.Object>>",
+      "type" : "array",
+      "defaultValue" : [ ],
+      "description" : "The table transform config",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.rename.TableRenameTransformFactory"
+    } ],
+    "rules" : [ ]
+  }, {
+    "id" : "transform.Replace",
+    "plugin" : "Replace",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.replace.ReplaceTransformFactory",
+    "options" : [ {
+      "key" : "is_regex",
+      "javaType" : "java.lang.Boolean",
+      "type" : "boolean",
+      "defaultValue" : false,
+      "description" : "Use regex for string match",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.replace.ReplaceTransformFactory"
+    }, {
+      "key" : "pattern",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The old string that will be replaced",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.replace.ReplaceTransformFactory"
+    }, {
+      "key" : "replace_field",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The field you want to replace",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.replace.ReplaceTransformFactory"
+    }, {
+      "key" : "replace_first",
+      "javaType" : "java.lang.Boolean",
+      "type" : "boolean",
+      "defaultValue" : null,
+      "description" : "Replace the first match string",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.replace.ReplaceTransformFactory"
+    }, {
+      "key" : "replacement",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The new string for replace",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.replace.ReplaceTransformFactory"
+    }, {
+      "key" : "table_match_regex",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : ".*",
+      "description" : "The regex to match the table path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.replace.ReplaceTransformFactory"
+    }, {
+      "key" : "table_transform",
+      "javaType" : "java.util.List<java.util.Map<java.lang.String,java.lang.Object>>",
+      "type" : "array",
+      "defaultValue" : [ ],
+      "description" : "The table transform config",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.replace.ReplaceTransformFactory"
+    } ],
+    "rules" : [ {
+      "kind" : "ConditionalRequiredOptions",
+      "keys" : [ "replace_first" ],
+      "condition" : "'is_regex' == true"
+    } ]
+  }, {
+    "id" : "transform.RowKindExtractor",
+    "plugin" : "RowKindExtractor",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.rowkind.RowKindExtractorTransformFactory",
+    "options" : [ {
+      "key" : "custom_field_name",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : "row_kind",
+      "description" : "Custom field name of the RowKind field",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.rowkind.RowKindExtractorTransformFactory"
+    }, {
+      "key" : "table_match_regex",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : ".*",
+      "description" : "The regex to match the table path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.rowkind.RowKindExtractorTransformFactory"
+    }, {
+      "key" : "table_transform",
+      "javaType" : "java.util.List<java.util.Map<java.lang.String,java.lang.Object>>",
+      "type" : "array",
+      "defaultValue" : [ ],
+      "description" : "The table transform config",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.rowkind.RowKindExtractorTransformFactory"
+    } ],
+    "rules" : [ ]
+  }, {
+    "id" : "transform.Split",
+    "plugin" : "Split",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.split.SplitTransformFactory",
+    "options" : [ {
+      "key" : "output_fields",
+      "javaType" : "java.util.List<java.lang.String>",
+      "type" : "array",
+      "defaultValue" : null,
+      "description" : "The result fields after split",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.split.SplitTransformFactory"
+    }, {
+      "key" : "separator",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The separator to split the field",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.split.SplitTransformFactory"
+    }, {
+      "key" : "split_field",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The field to be split",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.split.SplitTransformFactory"
+    }, {
+      "key" : "table_match_regex",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : ".*",
+      "description" : "The regex to match the table path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.split.SplitTransformFactory"
+    }, {
+      "key" : "table_transform",
+      "javaType" : "java.util.List<java.util.Map<java.lang.String,java.lang.Object>>",
+      "type" : "array",
+      "defaultValue" : [ ],
+      "description" : "The table transform config",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.split.SplitTransformFactory"
+    } ],
+    "rules" : [ ]
+  }, {
+    "id" : "transform.Sql",
+    "plugin" : "Sql",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.sql.SQLTransformFactory",
+    "options" : [ {
+      "key" : "query",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The query SQL",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.sql.SQLTransformFactory"
+    }, {
+      "key" : "table_match_regex",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : ".*",
+      "description" : "The regex to match the table path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.sql.SQLTransformFactory"
+    }, {
+      "key" : "table_transform",
+      "javaType" : "java.util.List<java.util.Map<java.lang.String,java.lang.Object>>",
+      "type" : "array",
+      "defaultValue" : [ ],
+      "description" : "The table transform config",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.sql.SQLTransformFactory"
+    } ],
+    "rules" : [ ]
+  }, {
+    "id" : "transform.TableFilter",
+    "plugin" : "TableFilter",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.table.TableFilterTransformFactory",
+    "options" : [ {
+      "key" : "database_pattern",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Specify database filter patternThe default value is null, which means no filtering. If you want to filter the database name, please set it to a regular expression.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.table.TableFilterTransformFactory"
+    }, {
+      "key" : "pattern_mode",
+      "javaType" : "org.apache.seatunnel.transform.table.TableFilterConfig$PatternMode",
+      "type" : "string",
+      "defaultValue" : "INCLUDE",
+      "description" : "Specify pattern modeThe default value is INCLUDE, which means include the matched table.If you want to exclude the matched table, please set it to EXCLUDE.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.table.TableFilterTransformFactory",
+      "enumValues" : [ "INCLUDE", "EXCLUDE" ]
+    }, {
+      "key" : "schema_pattern",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Specify schema filter patternThe default value is null, which means no filtering. If you want to filter the schema name, please set it to a regular expression.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.table.TableFilterTransformFactory"
+    }, {
+      "key" : "table_match_regex",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : ".*",
+      "description" : "The regex to match the table path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.table.TableFilterTransformFactory"
+    }, {
+      "key" : "table_pattern",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Specify table filter patternThe default value is null, which means no filtering. If you want to filter the table name, please set it to a regular expression.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.table.TableFilterTransformFactory"
+    }, {
+      "key" : "table_transform",
+      "javaType" : "java.util.List<java.util.Map<java.lang.String,java.lang.Object>>",
+      "type" : "array",
+      "defaultValue" : [ ],
+      "description" : "The table transform config",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.table.TableFilterTransformFactory"
+    } ],
+    "rules" : [ ]
+  }, {
+    "id" : "transform.TableMerge",
+    "plugin" : "TableMerge",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.table.TableMergeTransformFactory",
+    "options" : [ {
+      "key" : "database",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Specify new database name",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.table.TableMergeTransformFactory"
+    }, {
+      "key" : "schema",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Specify new schema name",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.table.TableMergeTransformFactory"
+    }, {
+      "key" : "table",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Specify new table name",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.table.TableMergeTransformFactory"
+    }, {
+      "key" : "table_match_regex",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : ".*",
+      "description" : "The regex to match the table path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.table.TableMergeTransformFactory"
+    }, {
+      "key" : "table_transform",
+      "javaType" : "java.util.List<java.util.Map<java.lang.String,java.lang.Object>>",
+      "type" : "array",
+      "defaultValue" : [ ],
+      "description" : "The table transform config",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.table.TableMergeTransformFactory"
+    } ],
+    "rules" : [ {
+      "kind" : "AbsolutelyRequiredOptions",
+      "keys" : [ "table" ]
+    } ]
+  }, {
+    "id" : "transform.DataValidator",
+    "plugin" : "DataValidator",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.validator.DataValidatorTransformFactory",
+    "options" : [ {
+      "key" : "field_rules",
+      "javaType" : "java.util.List<java.util.Map<java.lang.String,java.lang.Object>>",
+      "type" : "array",
+      "defaultValue" : null,
+      "description" : "Field validation rules",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.validator.DataValidatorTransformFactory"
+    }, {
+      "key" : "row_error_handle_way",
+      "javaType" : "org.apache.seatunnel.transform.common.ErrorHandleWay",
+      "type" : "string",
+      "defaultValue" : "FAIL",
+      "description" : "The processing method of data format error. The default value is fail, and the optional value is (fail, skip). When fail is selected, data format error will block and an exception will be thrown. When skip is selected, data format error will skip this line data.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.validator.DataValidatorTransformFactory",
+      "enumValues" : [ "FAIL", "SKIP", "SKIP_ROW", "ROUTE_TO_TABLE" ]
+    }, {
+      "key" : "row_error_handle_way.error_table",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Target table name for routing invalid data when error_handle_way is ROUTE_TO_TABLE",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.validator.DataValidatorTransformFactory"
+    }, {
+      "key" : "table_match_regex",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : ".*",
+      "description" : "The regex to match the table path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.validator.DataValidatorTransformFactory"
+    }, {
+      "key" : "table_transform",
+      "javaType" : "java.util.List<java.util.Map<java.lang.String,java.lang.Object>>",
+      "type" : "array",
+      "defaultValue" : [ ],
+      "description" : "The table transform config",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.validator.DataValidatorTransformFactory"
+    } ],
+    "rules" : [ {
+      "kind" : "AbsolutelyRequiredOptions",
+      "keys" : [ "field_rules" ]
+    } ]
+  }, {
+    "id" : "source.Jdbc.table_list[]",
+    "plugin" : "Jdbc",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.config.JdbcSourceTableConfig",
+    "options" : [ {
+      "key" : "table_path",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "table full path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.config.JdbcSourceTableConfig",
+      "condition" : "Inherits the top-level option when omitted; JdbcSourceTableConfig.of"
+    }, {
+      "key" : "query",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "query",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.config.JdbcSourceTableConfig",
+      "condition" : "Inherits the top-level option when omitted; JdbcSourceTableConfig.of"
+    }, {
+      "key" : "partition_column",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "partition column",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.config.JdbcSourceTableConfig",
+      "condition" : "Inherits the top-level option when omitted; JdbcSourceTableConfig.of"
+    }, {
+      "key" : "partition_num",
+      "javaType" : "java.lang.Integer",
+      "type" : "number",
+      "defaultValue" : null,
+      "description" : "partition num",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.config.JdbcSourceTableConfig",
+      "condition" : "Inherits the top-level option when omitted; JdbcSourceTableConfig.of"
+    }, {
+      "key" : "partition_lower_bound",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "partition lower bound",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.config.JdbcSourceTableConfig",
+      "condition" : "Inherits the top-level option when omitted; JdbcSourceTableConfig.of"
+    }, {
+      "key" : "partition_upper_bound",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "partition upper bound",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.config.JdbcSourceTableConfig",
+      "condition" : "Inherits the top-level option when omitted; JdbcSourceTableConfig.of"
+    }, {
+      "key" : "use_select_count",
+      "javaType" : "java.lang.Boolean",
+      "type" : "boolean",
+      "defaultValue" : null,
+      "description" : "Use select count for table count",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.config.JdbcSourceTableConfig",
+      "condition" : "Inherits the top-level option when omitted; JdbcSourceTableConfig.of"
+    }, {
+      "key" : "skip_analyze",
+      "javaType" : "java.lang.Boolean",
+      "type" : "boolean",
+      "defaultValue" : null,
+      "description" : "Skip the analysis of table count",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.config.JdbcSourceTableConfig",
+      "condition" : "Inherits the top-level option when omitted; JdbcSourceTableConfig.of"
+    }, {
+      "key" : "use_regex",
+      "javaType" : "java.lang.Boolean",
+      "type" : "boolean",
+      "defaultValue" : null,
+      "description" : "Use regular expression for table path matching",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.connectors.seatunnel.jdbc.config.JdbcSourceTableConfig",
+      "condition" : "Inherits the top-level option when omitted; JdbcSourceTableConfig.of"
+    } ],
+    "rules" : [ ]
+  }, {
+    "id" : "transform.DefineSinkType.columns[]",
+    "plugin" : "DefineSinkType",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.adaptsink.DefineSinkTypeTransformConfig$DefineColumnType",
+    "options" : [ {
+      "key" : "column",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Nested configuration field; default/required behavior is determined by the parent plugin",
+      "origin" : "org.apache.seatunnel.transform.adaptsink.DefineSinkTypeTransformConfig$DefineColumnType",
+      "fallbackKeys" : [ ]
+    }, {
+      "key" : "type",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Nested configuration field; default/required behavior is determined by the parent plugin",
+      "origin" : "org.apache.seatunnel.transform.adaptsink.DefineSinkTypeTransformConfig$DefineColumnType",
+      "fallbackKeys" : [ ]
+    } ],
+    "rules" : [ ],
+    "nested" : true
+  }, {
+    "id" : "transform.DefineSinkType.table_transform[]",
+    "plugin" : "DefineSinkType",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.adaptsink.DefineSinkTypeTransformFactory",
+    "options" : [ {
+      "key" : "columns",
+      "javaType" : "java.util.List<org.apache.seatunnel.transform.adaptsink.DefineSinkTypeTransformConfig$DefineColumnType>",
+      "type" : "array",
+      "defaultValue" : null,
+      "description" : "The columns to be defined, the name and type of the column must be set",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.adaptsink.DefineSinkTypeTransformFactory"
+    }, {
+      "key" : "table_match_regex",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : ".*",
+      "description" : "The regex to match the table path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.adaptsink.DefineSinkTypeTransformFactory"
+    } ],
+    "rules" : [ {
+      "kind" : "AbsolutelyRequiredOptions",
+      "keys" : [ "columns" ]
+    } ],
+    "nested" : true
+  }, {
+    "id" : "transform.Copy.table_transform[]",
+    "plugin" : "Copy",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.copy.CopyFieldTransformFactory",
+    "options" : [ {
+      "key" : "dest_field",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Copy Src field to Dest field",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.copy.CopyFieldTransformFactory"
+    }, {
+      "key" : "fields",
+      "javaType" : "java.util.Map<java.lang.String,java.lang.String>",
+      "type" : "object",
+      "defaultValue" : null,
+      "description" : "Specify the field copy relationship between input and output",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.copy.CopyFieldTransformFactory"
+    }, {
+      "key" : "src_field",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Src field you want to copy",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.copy.CopyFieldTransformFactory"
+    }, {
+      "key" : "table_match_regex",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : ".*",
+      "description" : "The regex to match the table path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.copy.CopyFieldTransformFactory"
+    } ],
+    "rules" : [ {
+      "kind" : "BundledRequiredOptions",
+      "keys" : [ "src_field", "dest_field" ]
+    }, {
+      "kind" : "BundledRequiredOptions",
+      "keys" : [ "fields" ]
+    } ],
+    "nested" : true
+  }, {
+    "id" : "transform.DynamicCompile.table_transform[]",
+    "plugin" : "DynamicCompile",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.dynamiccompile.DynamicCompileTransformFactory",
+    "options" : [ {
+      "key" : "absolute_path",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "absolute_path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.dynamiccompile.DynamicCompileTransformFactory"
+    }, {
+      "key" : "compile_language",
+      "javaType" : "org.apache.seatunnel.transform.dynamiccompile.CompileLanguage",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "compile language",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.dynamiccompile.DynamicCompileTransformFactory",
+      "enumValues" : [ "GROOVY", "JAVA", "SCALA" ]
+    }, {
+      "key" : "compile_pattern",
+      "javaType" : "org.apache.seatunnel.transform.dynamiccompile.CompilePattern",
+      "type" : "string",
+      "defaultValue" : "SOURCE_CODE",
+      "description" : "compile_pattern",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.dynamiccompile.DynamicCompileTransformFactory",
+      "enumValues" : [ "SOURCE_CODE", "ABSOLUTE_PATH" ]
+    }, {
+      "key" : "source_code",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "source_code to compile",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.dynamiccompile.DynamicCompileTransformFactory"
+    }, {
+      "key" : "table_match_regex",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : ".*",
+      "description" : "The regex to match the table path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.dynamiccompile.DynamicCompileTransformFactory"
+    } ],
+    "rules" : [ {
+      "kind" : "ConditionalRequiredOptions",
+      "keys" : [ "source_code" ],
+      "condition" : "'compile_pattern' == SOURCE_CODE"
+    }, {
+      "kind" : "ConditionalRequiredOptions",
+      "keys" : [ "absolute_path" ],
+      "condition" : "'compile_pattern' == ABSOLUTE_PATH"
+    } ],
+    "nested" : true
+  }, {
+    "id" : "transform.FieldMapper.table_transform[]",
+    "plugin" : "FieldMapper",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.fieldmapper.FieldMapperTransformFactory",
+    "options" : [ {
+      "key" : "field_mapper",
+      "javaType" : "java.util.Map<java.lang.String,java.lang.String>",
+      "type" : "object",
+      "defaultValue" : null,
+      "description" : "Specify the field mapping relationship between input and output",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.fieldmapper.FieldMapperTransformFactory"
+    }, {
+      "key" : "table_match_regex",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : ".*",
+      "description" : "The regex to match the table path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.fieldmapper.FieldMapperTransformFactory"
+    } ],
+    "rules" : [ ],
+    "nested" : true
+  }, {
+    "id" : "transform.Filter.table_transform[]",
+    "plugin" : "Filter",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.filter.FilterFieldTransformFactory",
+    "options" : [ {
+      "key" : "exclude_fields",
+      "javaType" : "java.util.List<java.lang.String>",
+      "type" : "array",
+      "defaultValue" : null,
+      "description" : "The list of fields that need to be deleted",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.filter.FilterFieldTransformFactory"
+    }, {
+      "key" : "include_fields",
+      "javaType" : "java.util.List<java.lang.String>",
+      "type" : "array",
+      "defaultValue" : null,
+      "description" : "The list of fields that need to be kept.",
+      "fallbackKeys" : [ "fields" ],
+      "origin" : "org.apache.seatunnel.transform.filter.FilterFieldTransformFactory"
+    }, {
+      "key" : "table_match_regex",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : ".*",
+      "description" : "The regex to match the table path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.filter.FilterFieldTransformFactory"
+    } ],
+    "rules" : [ ],
+    "nested" : true
+  }, {
+    "id" : "transform.FilterRowKind.table_transform[]",
+    "plugin" : "FilterRowKind",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.filterrowkind.FilterRowKindTransformFactory",
+    "options" : [ {
+      "key" : "exclude_kinds",
+      "javaType" : "java.util.List<org.apache.seatunnel.api.table.type.RowKind>",
+      "type" : "array",
+      "defaultValue" : null,
+      "description" : "the row kinds to exclude",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.filterrowkind.FilterRowKindTransformFactory"
+    }, {
+      "key" : "include_kinds",
+      "javaType" : "java.util.List<org.apache.seatunnel.api.table.type.RowKind>",
+      "type" : "array",
+      "defaultValue" : null,
+      "description" : "the row kinds to include",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.filterrowkind.FilterRowKindTransformFactory"
+    }, {
+      "key" : "table_match_regex",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : ".*",
+      "description" : "The regex to match the table path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.filterrowkind.FilterRowKindTransformFactory"
+    } ],
+    "rules" : [ ],
+    "nested" : true
+  }, {
+    "id" : "transform.JsonPath.table_transform[]",
+    "plugin" : "JsonPath",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.jsonpath.JsonPathTransformFactory",
+    "options" : [ {
+      "key" : "columns",
+      "javaType" : "java.util.List<java.util.Map<java.lang.String,java.lang.Object>>",
+      "type" : "array",
+      "defaultValue" : null,
+      "description" : "columns",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.jsonpath.JsonPathTransformFactory"
+    }, {
+      "key" : "row_error_handle_way",
+      "javaType" : "org.apache.seatunnel.transform.common.ErrorHandleWay",
+      "type" : "string",
+      "defaultValue" : "FAIL",
+      "description" : "The processing method of data format error. The default value is fail, and the optional value is (fail, skip). When fail is selected, data format error will block and an exception will be thrown. When skip is selected, data format error will skip this line data.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.jsonpath.JsonPathTransformFactory",
+      "enumValues" : [ "FAIL", "SKIP", "SKIP_ROW", "ROUTE_TO_TABLE" ]
+    }, {
+      "key" : "table_match_regex",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : ".*",
+      "description" : "The regex to match the table path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.jsonpath.JsonPathTransformFactory"
+    } ],
+    "rules" : [ ],
+    "nested" : true
+  }, {
+    "id" : "transform.Metadata.table_transform[]",
+    "plugin" : "Metadata",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.metadata.MetadataTransformFactory",
+    "options" : [ {
+      "key" : "metadata_fields",
+      "javaType" : "java.util.Map<java.lang.String,java.lang.String>",
+      "type" : "object",
+      "defaultValue" : null,
+      "description" : "Specify the metadata field relationship between input and output",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.metadata.MetadataTransformFactory"
+    }, {
+      "key" : "table_match_regex",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : ".*",
+      "description" : "The regex to match the table path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.metadata.MetadataTransformFactory"
+    } ],
+    "rules" : [ ],
+    "nested" : true
+  }, {
+    "id" : "transform.Embedding.table_transform[]",
+    "plugin" : "Embedding",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.nlpmodel.embedding.EmbeddingTransformFactory",
+    "options" : [ {
+      "key" : "api_key",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The API key of LLM/Embedding",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.embedding.EmbeddingTransformFactory"
+    }, {
+      "key" : "api_path",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The API of LLM/Embedding",
+      "fallbackKeys" : [ "openai.api_path" ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.embedding.EmbeddingTransformFactory"
+    }, {
+      "key" : "aws_region",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The AWS region for Amazon Bedrock service.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.embedding.EmbeddingTransformFactory"
+    }, {
+      "key" : "custom_config",
+      "javaType" : "java.util.Map<java.lang.String,java.lang.Object>",
+      "type" : "object",
+      "defaultValue" : null,
+      "description" : "The custom config of the custom model.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.embedding.EmbeddingTransformFactory"
+    }, {
+      "key" : "dimension",
+      "javaType" : "java.lang.Integer",
+      "type" : "number",
+      "defaultValue" : 2048,
+      "description" : "dimension",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.embedding.EmbeddingTransformFactory"
+    }, {
+      "key" : "model",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The model of LLM/Embedding, eg: if the model provider is OpenAI LLM, the model should be gpt-3.5-turbo/gpt-4o-mini, etc.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.embedding.EmbeddingTransformFactory"
+    }, {
+      "key" : "model_provider",
+      "javaType" : "org.apache.seatunnel.transform.nlpmodel.ModelProvider",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The model provider of LLM/Embedding",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.embedding.EmbeddingTransformFactory",
+      "enumValues" : [ "AMAZON", "OPENAI", "DOUBAO", "QIANFAN", "KIMIAI", "DEEPSEEK", "MICROSOFT", "ZHIPU", "CUSTOM", "LOCAL" ]
+    }, {
+      "key" : "oauth_path",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The Oauth path of LLM/Embedding",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.embedding.EmbeddingTransformFactory"
+    }, {
+      "key" : "process_batch_size",
+      "javaType" : "java.lang.Integer",
+      "type" : "number",
+      "defaultValue" : 100,
+      "description" : "The row batch size of each process",
+      "fallbackKeys" : [ "inference_batch_size" ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.embedding.EmbeddingTransformFactory"
+    }, {
+      "key" : "secret_key",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The Secret key of LLM/Embedding",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.embedding.EmbeddingTransformFactory"
+    }, {
+      "key" : "single_vectorized_input_number",
+      "javaType" : "java.lang.Integer",
+      "type" : "number",
+      "defaultValue" : 1,
+      "description" : "The number of single vectorized inputs, default is 1 , which means 1 inputs will be vectorized in one request , eg: qianfan only allows a maximum of 16 simultaneous messages, depending on your own settings, etc",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.embedding.EmbeddingTransformFactory"
+    }, {
+      "key" : "table_match_regex",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : ".*",
+      "description" : "The regex to match the table path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.embedding.EmbeddingTransformFactory"
+    }, {
+      "key" : "vectorization_fields",
+      "javaType" : "java.util.Map<java.lang.String,java.lang.Object>",
+      "type" : "object",
+      "defaultValue" : null,
+      "description" : "Specify the field vectorization relationship between input and output. Supports multiple formats: 1. String format: 'fieldName' (defaults to text modality) 2. Object format with modality and format: {field: 'fieldName', modality: 'modalityType', format: 'formatType'} where modality can be 'image/jpeg', 'video/mp4' etc. , format can be 'url', 'binary'. ",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.embedding.EmbeddingTransformFactory"
+    } ],
+    "rules" : [ {
+      "kind" : "ConditionalRequiredOptions",
+      "keys" : [ "api_key", "secret_key", "aws_region", "model", "dimension" ],
+      "condition" : "'model_provider' == AMAZON"
+    }, {
+      "kind" : "ConditionalRequiredOptions",
+      "keys" : [ "api_key" ],
+      "condition" : "'model_provider' == OPENAI || 'model_provider' == DOUBAO"
+    }, {
+      "kind" : "ConditionalRequiredOptions",
+      "keys" : [ "api_key", "secret_key", "oauth_path" ],
+      "condition" : "'model_provider' == QIANFAN"
+    }, {
+      "kind" : "ConditionalRequiredOptions",
+      "keys" : [ "custom_config" ],
+      "condition" : "'model_provider' == CUSTOM"
+    }, {
+      "kind" : "ConditionalRequiredOptions",
+      "keys" : [ "dimension" ],
+      "condition" : "'model_provider' == ZHIPU"
+    } ],
+    "nested" : true
+  }, {
+    "id" : "transform.LLM.table_transform[]",
+    "plugin" : "LLM",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.nlpmodel.llm.LLMTransformFactory",
+    "options" : [ {
+      "key" : "api_key",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The API key of LLM/Embedding",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.llm.LLMTransformFactory"
+    }, {
+      "key" : "api_path",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The API of LLM/Embedding",
+      "fallbackKeys" : [ "openai.api_path" ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.llm.LLMTransformFactory"
+    }, {
+      "key" : "custom_config",
+      "javaType" : "java.util.Map<java.lang.String,java.lang.Object>",
+      "type" : "object",
+      "defaultValue" : null,
+      "description" : "The custom config of the custom model.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.llm.LLMTransformFactory"
+    }, {
+      "key" : "model",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The model of LLM/Embedding, eg: if the model provider is OpenAI LLM, the model should be gpt-3.5-turbo/gpt-4o-mini, etc.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.llm.LLMTransformFactory"
+    }, {
+      "key" : "model_provider",
+      "javaType" : "org.apache.seatunnel.transform.nlpmodel.ModelProvider",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The model provider of LLM/Embedding",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.llm.LLMTransformFactory",
+      "enumValues" : [ "AMAZON", "OPENAI", "DOUBAO", "QIANFAN", "KIMIAI", "DEEPSEEK", "MICROSOFT", "ZHIPU", "CUSTOM", "LOCAL" ]
+    }, {
+      "key" : "oauth_path",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The Oauth path of LLM/Embedding",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.llm.LLMTransformFactory"
+    }, {
+      "key" : "output_data_type",
+      "javaType" : "org.apache.seatunnel.api.table.type.SqlType",
+      "type" : "string",
+      "defaultValue" : "STRING",
+      "description" : "The output data type of LLM",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.llm.LLMTransformFactory",
+      "enumValues" : [ "ARRAY", "MAP", "STRING", "BOOLEAN", "TINYINT", "SMALLINT", "INT", "BIGINT", "FLOAT", "DOUBLE", "DECIMAL", "NULL", "BYTES", "DATE", "TIME", "TIMESTAMP", "TIMESTAMP_TZ", "BINARY_VECTOR", "FLOAT_VECTOR", "FLOAT16_VECTOR", "BFLOAT16_VECTOR", "SPARSE_FLOAT_VECTOR", "ROW", "MULTIPLE_ROW" ]
+    }, {
+      "key" : "process_batch_size",
+      "javaType" : "java.lang.Integer",
+      "type" : "number",
+      "defaultValue" : 100,
+      "description" : "The row batch size of each process",
+      "fallbackKeys" : [ "inference_batch_size" ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.llm.LLMTransformFactory"
+    }, {
+      "key" : "prompt",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The prompt of LLM",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.llm.LLMTransformFactory"
+    }, {
+      "key" : "secret_key",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The Secret key of LLM/Embedding",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.llm.LLMTransformFactory"
+    }, {
+      "key" : "table_match_regex",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : ".*",
+      "description" : "The regex to match the table path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.nlpmodel.llm.LLMTransformFactory"
+    } ],
+    "rules" : [ {
+      "kind" : "ConditionalRequiredOptions",
+      "keys" : [ "api_key" ],
+      "condition" : "'model_provider' == OPENAI || 'model_provider' == DOUBAO || 'model_provider' == MICROSOFT"
+    }, {
+      "kind" : "ConditionalRequiredOptions",
+      "keys" : [ "api_key", "secret_key", "oauth_path" ],
+      "condition" : "'model_provider' == QIANFAN"
+    }, {
+      "kind" : "ConditionalRequiredOptions",
+      "keys" : [ "custom_config" ],
+      "condition" : "'model_provider' == CUSTOM"
+    } ],
+    "nested" : true
+  }, {
+    "id" : "transform.RegexExtract.table_transform[]",
+    "plugin" : "RegexExtract",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.regexextract.RegexExtractTransformFactory",
+    "options" : [ {
+      "key" : "default_values",
+      "javaType" : "java.util.List<java.lang.String>",
+      "type" : "array",
+      "defaultValue" : null,
+      "description" : "Default values for output fields when regex pattern does not match",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.regexextract.RegexExtractTransformFactory"
+    }, {
+      "key" : "output_fields",
+      "javaType" : "java.util.List<java.lang.String>",
+      "type" : "array",
+      "defaultValue" : null,
+      "description" : "Output field names for extracted groups",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.regexextract.RegexExtractTransformFactory"
+    }, {
+      "key" : "regex_pattern",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Regex pattern with capture groups",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.regexextract.RegexExtractTransformFactory"
+    }, {
+      "key" : "source_field",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Source field to extract from",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.regexextract.RegexExtractTransformFactory"
+    } ],
+    "rules" : [ {
+      "kind" : "AbsolutelyRequiredOptions",
+      "keys" : [ "source_field", "regex_pattern", "output_fields" ]
+    } ],
+    "nested" : true
+  }, {
+    "id" : "transform.FieldRename.replacements_with_regex[]",
+    "plugin" : "FieldRename",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.rename.FieldRenameConfig$ReplacementsWithRegex",
+    "options" : [ {
+      "key" : "replaceFrom",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Nested configuration field; default/required behavior is determined by the parent plugin",
+      "origin" : "org.apache.seatunnel.transform.rename.FieldRenameConfig$ReplacementsWithRegex",
+      "fallbackKeys" : [ "replace_from" ]
+    }, {
+      "key" : "replaceTo",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Nested configuration field; default/required behavior is determined by the parent plugin",
+      "origin" : "org.apache.seatunnel.transform.rename.FieldRenameConfig$ReplacementsWithRegex",
+      "fallbackKeys" : [ "replace_to" ]
+    }, {
+      "key" : "isRegex",
+      "javaType" : "java.lang.Boolean",
+      "type" : "boolean",
+      "defaultValue" : true,
+      "description" : "Nested configuration field; default/required behavior is determined by the parent plugin",
+      "origin" : "org.apache.seatunnel.transform.rename.FieldRenameConfig$ReplacementsWithRegex",
+      "fallbackKeys" : [ "is_regex" ]
+    } ],
+    "rules" : [ ],
+    "nested" : true
+  }, {
+    "id" : "transform.FieldRename.specific[]",
+    "plugin" : "FieldRename",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.rename.FieldRenameConfig$SpecificModify",
+    "options" : [ {
+      "key" : "fieldName",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Nested configuration field; default/required behavior is determined by the parent plugin",
+      "origin" : "org.apache.seatunnel.transform.rename.FieldRenameConfig$SpecificModify",
+      "fallbackKeys" : [ "field_name" ]
+    }, {
+      "key" : "targetName",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Nested configuration field; default/required behavior is determined by the parent plugin",
+      "origin" : "org.apache.seatunnel.transform.rename.FieldRenameConfig$SpecificModify",
+      "fallbackKeys" : [ "target_name" ]
+    } ],
+    "rules" : [ ],
+    "nested" : true
+  }, {
+    "id" : "transform.FieldRename.table_transform[]",
+    "plugin" : "FieldRename",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.rename.FieldRenameTransformFactory",
+    "options" : [ {
+      "key" : "convert_case",
+      "javaType" : "org.apache.seatunnel.transform.rename.ConvertCase",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Convert to uppercase or lowercase",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.rename.FieldRenameTransformFactory",
+      "enumValues" : [ "LOWER", "UPPER" ]
+    }, {
+      "key" : "prefix",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Add prefix for field name",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.rename.FieldRenameTransformFactory"
+    }, {
+      "key" : "replacements_with_regex",
+      "javaType" : "java.util.List<org.apache.seatunnel.transform.rename.FieldRenameConfig$ReplacementsWithRegex>",
+      "type" : "array",
+      "defaultValue" : null,
+      "description" : "The regex of replace fields name to ",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.rename.FieldRenameTransformFactory"
+    }, {
+      "key" : "specific",
+      "javaType" : "java.util.List<org.apache.seatunnel.transform.rename.FieldRenameConfig$SpecificModify>",
+      "type" : "array",
+      "defaultValue" : null,
+      "description" : "The specific modify field name",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.rename.FieldRenameTransformFactory"
+    }, {
+      "key" : "suffix",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Add suffix for field name",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.rename.FieldRenameTransformFactory"
+    }, {
+      "key" : "table_match_regex",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : ".*",
+      "description" : "The regex to match the table path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.rename.FieldRenameTransformFactory"
+    } ],
+    "rules" : [ ],
+    "nested" : true
+  }, {
+    "id" : "transform.TableRename.replacements_with_regex[]",
+    "plugin" : "TableRename",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.rename.TableRenameConfig$ReplacementsWithRegex",
+    "options" : [ {
+      "key" : "replaceFrom",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Nested configuration field; default/required behavior is determined by the parent plugin",
+      "origin" : "org.apache.seatunnel.transform.rename.TableRenameConfig$ReplacementsWithRegex",
+      "fallbackKeys" : [ "replace_from" ]
+    }, {
+      "key" : "replaceTo",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Nested configuration field; default/required behavior is determined by the parent plugin",
+      "origin" : "org.apache.seatunnel.transform.rename.TableRenameConfig$ReplacementsWithRegex",
+      "fallbackKeys" : [ "replace_to" ]
+    }, {
+      "key" : "isRegex",
+      "javaType" : "java.lang.Boolean",
+      "type" : "boolean",
+      "defaultValue" : true,
+      "description" : "Nested configuration field; default/required behavior is determined by the parent plugin",
+      "origin" : "org.apache.seatunnel.transform.rename.TableRenameConfig$ReplacementsWithRegex",
+      "fallbackKeys" : [ ]
+    } ],
+    "rules" : [ ],
+    "nested" : true
+  }, {
+    "id" : "transform.TableRename.table_transform[]",
+    "plugin" : "TableRename",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.rename.TableRenameTransformFactory",
+    "options" : [ {
+      "key" : "convert_case",
+      "javaType" : "org.apache.seatunnel.transform.rename.ConvertCase",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Convert to uppercase or lowercase",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.rename.TableRenameTransformFactory",
+      "enumValues" : [ "LOWER", "UPPER" ]
+    }, {
+      "key" : "prefix",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Add prefix for table name",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.rename.TableRenameTransformFactory"
+    }, {
+      "key" : "replacements_with_regex",
+      "javaType" : "java.util.List<org.apache.seatunnel.transform.rename.TableRenameConfig$ReplacementsWithRegex>",
+      "type" : "array",
+      "defaultValue" : null,
+      "description" : "The regex of replace table name to ",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.rename.TableRenameTransformFactory"
+    }, {
+      "key" : "suffix",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Add suffix for table name",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.rename.TableRenameTransformFactory"
+    }, {
+      "key" : "table_match_regex",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : ".*",
+      "description" : "The regex to match the table path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.rename.TableRenameTransformFactory"
+    } ],
+    "rules" : [ ],
+    "nested" : true
+  }, {
+    "id" : "transform.Replace.table_transform[]",
+    "plugin" : "Replace",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.replace.ReplaceTransformFactory",
+    "options" : [ {
+      "key" : "is_regex",
+      "javaType" : "java.lang.Boolean",
+      "type" : "boolean",
+      "defaultValue" : false,
+      "description" : "Use regex for string match",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.replace.ReplaceTransformFactory"
+    }, {
+      "key" : "pattern",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The old string that will be replaced",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.replace.ReplaceTransformFactory"
+    }, {
+      "key" : "replace_field",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The field you want to replace",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.replace.ReplaceTransformFactory"
+    }, {
+      "key" : "replace_first",
+      "javaType" : "java.lang.Boolean",
+      "type" : "boolean",
+      "defaultValue" : null,
+      "description" : "Replace the first match string",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.replace.ReplaceTransformFactory"
+    }, {
+      "key" : "replacement",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The new string for replace",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.replace.ReplaceTransformFactory"
+    }, {
+      "key" : "table_match_regex",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : ".*",
+      "description" : "The regex to match the table path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.replace.ReplaceTransformFactory"
+    } ],
+    "rules" : [ {
+      "kind" : "ConditionalRequiredOptions",
+      "keys" : [ "replace_first" ],
+      "condition" : "'is_regex' == true"
+    } ],
+    "nested" : true
+  }, {
+    "id" : "transform.RowKindExtractor.table_transform[]",
+    "plugin" : "RowKindExtractor",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.rowkind.RowKindExtractorTransformFactory",
+    "options" : [ {
+      "key" : "custom_field_name",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : "row_kind",
+      "description" : "Custom field name of the RowKind field",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.rowkind.RowKindExtractorTransformFactory"
+    }, {
+      "key" : "table_match_regex",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : ".*",
+      "description" : "The regex to match the table path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.rowkind.RowKindExtractorTransformFactory"
+    } ],
+    "rules" : [ ],
+    "nested" : true
+  }, {
+    "id" : "transform.Split.table_transform[]",
+    "plugin" : "Split",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.split.SplitTransformFactory",
+    "options" : [ {
+      "key" : "output_fields",
+      "javaType" : "java.util.List<java.lang.String>",
+      "type" : "array",
+      "defaultValue" : null,
+      "description" : "The result fields after split",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.split.SplitTransformFactory"
+    }, {
+      "key" : "separator",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The separator to split the field",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.split.SplitTransformFactory"
+    }, {
+      "key" : "split_field",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The field to be split",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.split.SplitTransformFactory"
+    }, {
+      "key" : "table_match_regex",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : ".*",
+      "description" : "The regex to match the table path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.split.SplitTransformFactory"
+    } ],
+    "rules" : [ ],
+    "nested" : true
+  }, {
+    "id" : "transform.Sql.table_transform[]",
+    "plugin" : "Sql",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.sql.SQLTransformFactory",
+    "options" : [ {
+      "key" : "query",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The query SQL",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.sql.SQLTransformFactory"
+    }, {
+      "key" : "table_match_regex",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : ".*",
+      "description" : "The regex to match the table path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.sql.SQLTransformFactory"
+    } ],
+    "rules" : [ ],
+    "nested" : true
+  }, {
+    "id" : "transform.TableFilter.table_transform[]",
+    "plugin" : "TableFilter",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.table.TableFilterTransformFactory",
+    "options" : [ {
+      "key" : "database_pattern",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Specify database filter patternThe default value is null, which means no filtering. If you want to filter the database name, please set it to a regular expression.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.table.TableFilterTransformFactory"
+    }, {
+      "key" : "pattern_mode",
+      "javaType" : "org.apache.seatunnel.transform.table.TableFilterConfig$PatternMode",
+      "type" : "string",
+      "defaultValue" : "INCLUDE",
+      "description" : "Specify pattern modeThe default value is INCLUDE, which means include the matched table.If you want to exclude the matched table, please set it to EXCLUDE.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.table.TableFilterTransformFactory",
+      "enumValues" : [ "INCLUDE", "EXCLUDE" ]
+    }, {
+      "key" : "schema_pattern",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Specify schema filter patternThe default value is null, which means no filtering. If you want to filter the schema name, please set it to a regular expression.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.table.TableFilterTransformFactory"
+    }, {
+      "key" : "table_match_regex",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : ".*",
+      "description" : "The regex to match the table path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.table.TableFilterTransformFactory"
+    }, {
+      "key" : "table_pattern",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Specify table filter patternThe default value is null, which means no filtering. If you want to filter the table name, please set it to a regular expression.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.table.TableFilterTransformFactory"
+    } ],
+    "rules" : [ ],
+    "nested" : true
+  }, {
+    "id" : "transform.TableMerge.table_transform[]",
+    "plugin" : "TableMerge",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.table.TableMergeTransformFactory",
+    "options" : [ {
+      "key" : "database",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Specify new database name",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.table.TableMergeTransformFactory"
+    }, {
+      "key" : "schema",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Specify new schema name",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.table.TableMergeTransformFactory"
+    }, {
+      "key" : "table",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Specify new table name",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.table.TableMergeTransformFactory"
+    }, {
+      "key" : "table_match_regex",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : ".*",
+      "description" : "The regex to match the table path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.table.TableMergeTransformFactory"
+    } ],
+    "rules" : [ {
+      "kind" : "AbsolutelyRequiredOptions",
+      "keys" : [ "table" ]
+    } ],
+    "nested" : true
+  }, {
+    "id" : "transform.DataValidator.table_transform[]",
+    "plugin" : "DataValidator",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.transform.validator.DataValidatorTransformFactory",
+    "options" : [ {
+      "key" : "field_rules",
+      "javaType" : "java.util.List<java.util.Map<java.lang.String,java.lang.Object>>",
+      "type" : "array",
+      "defaultValue" : null,
+      "description" : "Field validation rules",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.validator.DataValidatorTransformFactory"
+    }, {
+      "key" : "row_error_handle_way",
+      "javaType" : "org.apache.seatunnel.transform.common.ErrorHandleWay",
+      "type" : "string",
+      "defaultValue" : "FAIL",
+      "description" : "The processing method of data format error. The default value is fail, and the optional value is (fail, skip). When fail is selected, data format error will block and an exception will be thrown. When skip is selected, data format error will skip this line data.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.validator.DataValidatorTransformFactory",
+      "enumValues" : [ "FAIL", "SKIP", "SKIP_ROW", "ROUTE_TO_TABLE" ]
+    }, {
+      "key" : "row_error_handle_way.error_table",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "Target table name for routing invalid data when error_handle_way is ROUTE_TO_TABLE",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.validator.DataValidatorTransformFactory"
+    }, {
+      "key" : "table_match_regex",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : ".*",
+      "description" : "The regex to match the table path",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.transform.validator.DataValidatorTransformFactory"
+    } ],
+    "rules" : [ {
+      "kind" : "AbsolutelyRequiredOptions",
+      "keys" : [ "field_rules" ]
+    } ],
+    "nested" : true
+  }, {
+    "id" : "metadata.ColumnOptions",
+    "plugin" : "",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.api.options.table.ColumnOptions",
+    "options" : [ {
+      "key" : "columnLength",
+      "javaType" : "java.lang.Long",
+      "type" : "number",
+      "defaultValue" : 0,
+      "description" : "SeaTunnel Schema Column Length",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.table.ColumnOptions",
+      "condition" : "Common schema/catalog metadata definition; placement is determined by the plugin parser, see pinned source"
+    }, {
+      "key" : "columnScale",
+      "javaType" : "java.lang.Integer",
+      "type" : "number",
+      "defaultValue" : null,
+      "description" : "SeaTunnel Schema Column scale",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.table.ColumnOptions",
+      "condition" : "Common schema/catalog metadata definition; placement is determined by the plugin parser, see pinned source"
+    }, {
+      "key" : "columns",
+      "javaType" : "java.util.List<java.util.Map<java.lang.String,java.lang.Object>>",
+      "type" : "array",
+      "defaultValue" : null,
+      "description" : "SeaTunnel Schema Columns",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.table.ColumnOptions",
+      "condition" : "Common schema/catalog metadata definition; placement is determined by the plugin parser, see pinned source"
+    }, {
+      "key" : "comment",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "SeaTunnel Schema Column Comment",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.table.ColumnOptions",
+      "condition" : "Common schema/catalog metadata definition; placement is determined by the plugin parser, see pinned source"
+    }, {
+      "key" : "defaultValue",
+      "javaType" : "java.lang.Object",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "SeaTunnel Schema Column Default Value",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.table.ColumnOptions",
+      "condition" : "Common schema/catalog metadata definition; placement is determined by the plugin parser, see pinned source"
+    }, {
+      "key" : "nullable",
+      "javaType" : "java.lang.Boolean",
+      "type" : "boolean",
+      "defaultValue" : true,
+      "description" : "SeaTunnel Schema Column Nullable",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.table.ColumnOptions",
+      "condition" : "Common schema/catalog metadata definition; placement is determined by the plugin parser, see pinned source"
+    }, {
+      "key" : "type",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "SeaTunnel Schema Column Type",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.table.ColumnOptions",
+      "condition" : "Common schema/catalog metadata definition; placement is determined by the plugin parser, see pinned source"
+    } ],
+    "rules" : [ ]
+  }, {
+    "id" : "metadata.ConstraintKeyOptions",
+    "plugin" : "",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.api.options.table.ConstraintKeyOptions",
+    "options" : [ {
+      "key" : "columnName",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "SeaTunnel Schema Constraint Key Column Name",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.table.ConstraintKeyOptions",
+      "condition" : "Common schema/catalog metadata definition; placement is determined by the plugin parser, see pinned source"
+    }, {
+      "key" : "constraintColumns",
+      "javaType" : "java.util.List<java.util.Map<java.lang.String,java.lang.Object>>",
+      "type" : "array",
+      "defaultValue" : null,
+      "description" : "SeaTunnel Schema Constraint Key Columns. e.g. [{columnName: \"name\", sortType: \"ASC\"}]",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.table.ConstraintKeyOptions",
+      "condition" : "Common schema/catalog metadata definition; placement is determined by the plugin parser, see pinned source"
+    }, {
+      "key" : "constraintKeys",
+      "javaType" : "java.util.List<java.util.Map<java.lang.String,java.lang.Object>>",
+      "type" : "array",
+      "defaultValue" : null,
+      "description" : "SeaTunnel Schema Constraint Keys. e.g. [{name: \"xx_index\", type: \"KEY\", columnKeys: [{columnName: \"name\", sortType: \"ASC\"}]}]",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.table.ConstraintKeyOptions",
+      "condition" : "Common schema/catalog metadata definition; placement is determined by the plugin parser, see pinned source"
+    }, {
+      "key" : "constraintName",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "SeaTunnel Schema Constraint Key Name",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.table.ConstraintKeyOptions",
+      "condition" : "Common schema/catalog metadata definition; placement is determined by the plugin parser, see pinned source"
+    }, {
+      "key" : "constraintType",
+      "javaType" : "org.apache.seatunnel.api.table.catalog.ConstraintKey$ConstraintType",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "SeaTunnel Schema Constraint Key Type, e.g. KEY, UNIQUE_KEY, FOREIGN_KEY",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.table.ConstraintKeyOptions",
+      "enumValues" : [ "INDEX_KEY", "UNIQUE_KEY", "FOREIGN_KEY", "VECTOR_INDEX_KEY" ],
+      "condition" : "Common schema/catalog metadata definition; placement is determined by the plugin parser, see pinned source"
+    }, {
+      "key" : "sortType",
+      "javaType" : "org.apache.seatunnel.api.table.catalog.ConstraintKey$ColumnSortType",
+      "type" : "string",
+      "defaultValue" : "ASC",
+      "description" : "SeaTunnel Schema Constraint Key Column Sort Type, e.g. ASC, DESC",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.table.ConstraintKeyOptions",
+      "enumValues" : [ "ASC", "DESC" ],
+      "condition" : "Common schema/catalog metadata definition; placement is determined by the plugin parser, see pinned source"
+    } ],
+    "rules" : [ ]
+  }, {
+    "id" : "metadata.PrimaryKeyOptions",
+    "plugin" : "",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.api.options.table.PrimaryKeyOptions",
+    "options" : [ {
+      "key" : "columnNames",
+      "javaType" : "java.util.List<java.lang.String>",
+      "type" : "array",
+      "defaultValue" : null,
+      "description" : "SeaTunnel Schema Primary Key Columns",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.table.PrimaryKeyOptions",
+      "condition" : "Common schema/catalog metadata definition; placement is determined by the plugin parser, see pinned source"
+    }, {
+      "key" : "name",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "SeaTunnel Schema Primary Key Name",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.table.PrimaryKeyOptions",
+      "condition" : "Common schema/catalog metadata definition; placement is determined by the plugin parser, see pinned source"
+    }, {
+      "key" : "primaryKey",
+      "javaType" : "java.util.Map<java.lang.String,java.lang.Object>",
+      "type" : "object",
+      "defaultValue" : null,
+      "description" : "SeaTunnel Schema Fields",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.table.PrimaryKeyOptions",
+      "condition" : "Common schema/catalog metadata definition; placement is determined by the plugin parser, see pinned source"
+    } ],
+    "rules" : [ ]
+  }, {
+    "id" : "metadata.CatalogOptions",
+    "plugin" : "",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.api.options.table.CatalogOptions",
+    "options" : [ {
+      "key" : "database-pattern",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : ".*",
+      "description" : "The database names RegEx of the database to capture.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.table.CatalogOptions",
+      "condition" : "Common schema/catalog metadata definition; placement is determined by the plugin parser, see pinned source"
+    }, {
+      "key" : "table-names",
+      "javaType" : "java.util.List<java.lang.String>",
+      "type" : "array",
+      "defaultValue" : null,
+      "description" : "List of table names of databases to capture.The table name needs to include the database name, for example: database_name.table_name",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.table.CatalogOptions",
+      "condition" : "Common schema/catalog metadata definition; placement is determined by the plugin parser, see pinned source"
+    }, {
+      "key" : "table-pattern",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "The table names RegEx of the database to capture.The table name needs to include the database name, for example: database_.*\\.table_.*",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.table.CatalogOptions",
+      "condition" : "Common schema/catalog metadata definition; placement is determined by the plugin parser, see pinned source"
+    }, {
+      "key" : "table_list",
+      "javaType" : "java.util.List<java.util.Map<java.lang.String,java.lang.Object>>",
+      "type" : "array",
+      "defaultValue" : null,
+      "description" : "This parameter is deprecated, please use parameter: TableSchemaOptions.TABLE_CONFIGS. SeaTunnel Multi Table Schema, acts on structured and unstructured data sources. such as jdbc, paimon, doris, etc",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.table.CatalogOptions",
+      "condition" : "Common schema/catalog metadata definition; placement is determined by the plugin parser, see pinned source"
+    } ],
+    "rules" : [ ]
+  }, {
+    "id" : "metadata.TableIdentifierOptions",
+    "plugin" : "",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.api.options.table.TableIdentifierOptions",
+    "options" : [ {
+      "key" : "database_name",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "SeaTunnel Schema Database Name",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.table.TableIdentifierOptions",
+      "condition" : "Common schema/catalog metadata definition; placement is determined by the plugin parser, see pinned source"
+    }, {
+      "key" : "partition_keys",
+      "javaType" : "java.util.List<java.lang.String>",
+      "type" : "array",
+      "defaultValue" : null,
+      "description" : "SeaTunnel Schema Partition Keys, used to specify partition keys for table creation",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.table.TableIdentifierOptions",
+      "condition" : "Common schema/catalog metadata definition; placement is determined by the plugin parser, see pinned source"
+    }, {
+      "key" : "schema_first",
+      "javaType" : "java.lang.Boolean",
+      "type" : "boolean",
+      "defaultValue" : false,
+      "description" : "Parse Schema First from table",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.table.TableIdentifierOptions",
+      "condition" : "Common schema/catalog metadata definition; placement is determined by the plugin parser, see pinned source"
+    }, {
+      "key" : "schema_name",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "SeaTunnel Schema Table Name",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.table.TableIdentifierOptions",
+      "condition" : "Common schema/catalog metadata definition; placement is determined by the plugin parser, see pinned source"
+    }, {
+      "key" : "table",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "SeaTunnel Schema Full Table Name",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.table.TableIdentifierOptions",
+      "condition" : "Common schema/catalog metadata definition; placement is determined by the plugin parser, see pinned source"
+    }, {
+      "key" : "table_name",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : null,
+      "description" : "SeaTunnel Schema Table Name",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.table.TableIdentifierOptions",
+      "condition" : "Common schema/catalog metadata definition; placement is determined by the plugin parser, see pinned source"
+    } ],
+    "rules" : [ ]
+  }, {
+    "id" : "metadata.FormatOptions",
+    "plugin" : "",
+    "version" : "2.3.13",
+    "origin" : "org.apache.seatunnel.api.options.table.FormatOptions",
+    "options" : [ {
+      "key" : "date_format",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : "yyyy-MM-dd",
+      "description" : "Date format string (e.g. 'yyyy-MM-dd'). Must match one of the predefined values in the Formatter enum.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.table.FormatOptions",
+      "condition" : "Common schema/catalog metadata definition; placement is determined by the plugin parser, see pinned source"
+    }, {
+      "key" : "datetime_format",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : "yyyy-MM-dd HH:mm:ss",
+      "description" : "Datetime format string (e.g. 'yyyy-MM-dd HH:mm:ss'). Must match one of the predefined values in the Formatter enum.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.table.FormatOptions",
+      "condition" : "Common schema/catalog metadata definition; placement is determined by the plugin parser, see pinned source"
+    }, {
+      "key" : "time_format",
+      "javaType" : "java.lang.String",
+      "type" : "string",
+      "defaultValue" : "HH:mm:ss",
+      "description" : "Time format string (e.g. 'HH:mm:ss'). Must match one of the predefined values in the Formatter enum.",
+      "fallbackKeys" : [ ],
+      "origin" : "org.apache.seatunnel.api.options.table.FormatOptions",
+      "condition" : "Common schema/catalog metadata definition; placement is determined by the plugin parser, see pinned source"
+    } ],
+    "rules" : [ ]
+  } ]
+}

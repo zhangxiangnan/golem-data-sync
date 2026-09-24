@@ -57,7 +57,7 @@ public class MysqlMetadataService {
                     primaryKeys.add(keys.getString("COLUMN_NAME"));
                 }
             }
-            try (ResultSet result = metaData.getColumns(dataSource.databaseName, null, table, "%")) {
+            try (ResultSet result = metaData.getColumns(dataSource.databaseName, null, pattern(metaData, table), "%")) {
                 while (result.next()) {
                     String name = result.getString("COLUMN_NAME");
                     columns.add(new ColumnInfo(
@@ -80,7 +80,7 @@ public class MysqlMetadataService {
         validateIdentifier(table, "table");
         try (Connection connection = open(dataSource);
                 ResultSet result = connection.getMetaData().getTables(
-                        dataSource.databaseName, null, table, new String[] {"TABLE"})) {
+                        dataSource.databaseName, null, pattern(connection.getMetaData(), table), new String[] {"TABLE"})) {
             return result.next();
         }
     }
@@ -89,6 +89,11 @@ public class MysqlMetadataService {
         if (value == null || !value.matches("[A-Za-z0-9_$]+")) {
             throw new IllegalArgumentException(label + " must contain only letters, digits, _, or $");
         }
+    }
+
+    private static String pattern(DatabaseMetaData metadata, String name) throws SQLException {
+        String escape = metadata.getSearchStringEscape();
+        return name.replace(escape, escape + escape).replace("_", escape + "_").replace("%", escape + "%");
     }
 
     private Integer nullableInt(ResultSet result, String column) throws SQLException {
