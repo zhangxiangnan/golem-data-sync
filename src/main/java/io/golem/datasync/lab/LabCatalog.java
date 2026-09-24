@@ -60,7 +60,7 @@ public class LabCatalog {
         return "https://github.com/apache/seatunnel/blob/2.3.13/"+module+"/src/main/java/"+origin.split("\\$")[0].replace('.','/')+".java";
     }
     static String docUrl(String id) {
-        String path=id.equals("env")?"introduction/configuration/env":id.startsWith("source.Jdbc")?"connectors/source/Jdbc":id.equals("sink.Jdbc")?"connectors/sink/Jdbc":id.startsWith("transform.")&&!id.endsWith("common")?"transforms/"+id.substring(10).toLowerCase(Locale.ROOT):"connectors/common-options";
+        String path=id.equals("env")?"introduction/configuration/env":id.startsWith("source.Jdbc")?"connectors/source/Jdbc":id.equals("sink.Jdbc")?"connectors/sink/Jdbc":id.startsWith("transform.")&&!id.endsWith("common")?"transforms/"+id.split("\\.")[1].toLowerCase(Locale.ROOT):"connectors/common-options";
         return "https://seatunnel.apache.org/docs/2.3.13/"+path+"/";
     }
     public boolean savepointFilesPresent(String jobId,JsonNode checkpoints) {

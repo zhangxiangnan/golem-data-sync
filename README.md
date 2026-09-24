@@ -85,9 +85,13 @@ pnpm test
 pnpm build
 ```
 
-## 当前边界
+## SeaTunnel 实验台
 
-第一阶段仅支持 MySQL → MySQL、手工触发、单表整表同步。Zeta 已接真实执行，
-Spark 仅为本地 Mock，Flink 尚无执行适配器。不支持 CDC、Cron、多表任务、自定义
-SQL、字段改名、Upsert、Schema Evolution 或任意 Connector 跨引擎兼容。追加模式
-重复运行可能产生重复数据。
+进入 [实验台](http://127.0.0.1:3200/lab)，配置原生 JSON、Transform、多表、Checkpoint/保存点恢复和性能实验；参数目录与本机 Zeta 2.3.13 安装包对应，运行快照和指标独立保存。
+
+见 [使用说明](docs/SEATUNNEL-LAB.md) 和 [真实实验记录](docs/LAB-EXPERIMENTS.md)。
+
+## 单表向导边界
+
+原单表向导仅支持 MySQL → MySQL、手工触发、单表整表同步。Zeta 已接真实执行，
+Spark 仅为本地 Mock，Flink 尚无执行适配器。单表向导不提供多表或转换；这些能力在独立实验台中研究。平台尚不支持 CDC、Cron、运行中 Schema Evolution 或任意 Connector 跨引擎兼容。追加模式重复运行可能产生重复数据。

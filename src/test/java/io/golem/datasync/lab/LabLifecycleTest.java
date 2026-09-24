@@ -57,7 +57,7 @@ class LabLifecycleTest {
         lab.poll();assertThat(repo.run(id).path("status").asText()).isEqualTo("SAVED");
         var restored=lab.restore(id);assertThat(restored.path("id").asText()).isNotEqualTo(id);assertThat(restored.path("externalJobId").asText()).isEqualTo(job);assertThat(restored.path("restoredFrom").asText()).isEqualTo(id);
         assertThat(repo.cipher(restored.path("id").asText())).isEqualTo(repo.cipher(id));verify(engine).labSubmit(any(),eq(job),anyString(),eq(true));
-        lab.poll();assertThat(repo.run(id).path("status").asText()).isEqualTo("SAVED");
+        lab.poll();assertThat(repo.run(id).path("status").asText()).isEqualTo("SAVED");assertThat(repo.run(restored.path("id").asText()).path("status").asText()).isNotEqualTo("SAVED");
     }
     @Test void restoreRejectsMissingCheckpointEditedConfigAndUnknownEngine() {
         var r=start();String id=r.path("id").asText(),eid=r.path("experimentId").asText(),job=r.path("externalJobId").asText();repo.observe(id,"SAVED",LabJson.object());
@@ -72,6 +72,14 @@ class LabLifecycleTest {
         when(engine.labJobInfo(job)).thenReturn(LabJson.obj("{\"jobStatus\":\"RUNNING\"}"));doThrow(new RuntimeException("unavailable")).when(engine).labStop(job,false);
         assertThat(lab.stop(id,false).path("status").asText()).isEqualTo("UNKNOWN");
         lab.reconcile();String events=repo.events(id).toString();assertThat(events).contains("STOP_ERROR","RECONCILING");verify(engine,times(1)).labSubmit(any(),anyString(),anyString(),anyBoolean());
+    }
+    @Test void restoreRejectsMissingPhysicalSavepoint() {
+        var r=start();String id=r.path("id").asText(),job=r.path("externalJobId").asText();repo.observe(id,"SAVED",LabJson.object());
+        when(engine.labJobInfo(job)).thenReturn(LabJson.obj("{\"jobStatus\":\"SAVEPOINT_DONE\"}"));
+        when(engine.labCheckpoints(job)).thenReturn(LabJson.obj("{\"pipelines\":[{\"latestSavepoint\":{\"status\":\"COMPLETED\"}}]}"));
+        when(catalog.savepointFilesPresent(eq(job),any())).thenReturn(false);
+        assertThatThrownBy(()->lab.restore(id)).isInstanceOf(ConflictException.class).hasMessageContaining("保存点");
+        verify(engine,never()).labSubmit(any(),anyString(),anyString(),eq(true));
     }
     @Test void secretsStayWriteOnlyAndCopiesKeepEncryptedReferences() {
         var d=draft();d.putObject("secrets").put("extra","very-private");((ObjectNode)d.path("config").path("sink").get(0)).put("secret_access_key","${secret:extra}");

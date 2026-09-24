@@ -30,7 +30,8 @@ CREATE TABLE IF NOT EXISTS golem_lab_source.perf_orders (id BIGINT PRIMARY KEY,c
 CREATE TABLE IF NOT EXISTS golem_lab_source.schema_probe (id BIGINT PRIMARY KEY,name VARCHAR(80),amount DECIMAL(18,2));
 '''
 if args.reset:
-    for table in ['orders', 'products', 'customers', 'perf_orders', 'schema_probe']:
+    sql += 'DROP TABLE golem_lab_source.schema_probe; CREATE TABLE golem_lab_source.schema_probe (id BIGINT PRIMARY KEY,name VARCHAR(80),amount DECIMAL(18,2));\n'
+    for table in ['orders', 'products', 'customers', 'perf_orders']:
         sql += f'TRUNCATE TABLE golem_lab_source.{table};\n'
 # Deterministic fixture values; INSERT IGNORE makes preparation repeatable without touching existing rows.
 digits = '(SELECT 0 n UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9)'
@@ -39,7 +40,7 @@ sql += f"INSERT IGNORE INTO golem_lab_source.customers SELECT n,CONCAT('Customer
 sql += f"INSERT IGNORE INTO golem_lab_source.products SELECT n,CONCAT('Product ',n),CAST(n*12.34 AS DECIMAL(18,2)),n*10 FROM {sequence} WHERE n<=10;\n"
 sql += f"INSERT IGNORE INTO golem_lab_source.orders SELECT n,MOD(n-1,20)+1,MOD(n-1,10)+1,CAST(n*7.25 AS DECIMAL(18,2)),IF(MOD(n,3)=0,'NEW','PAID'),IF(MOD(n,7)=0,NULL,IF(MOD(n,11)=0,'',CONCAT('Order ',n))),'2026-01-02 12:00:00' FROM {sequence} WHERE n<=120;\n"
 sql += f"INSERT IGNORE INTO golem_lab_source.perf_orders SELECT n,MOD(n-1,20)+1,CAST(n*0.37 AS DECIMAL(18,2)),IF(MOD(n,3)=0,'NEW','PAID'),RPAD(CONCAT('payload-',n),200,'x'),'2026-01-03 12:00:00' FROM {sequence} WHERE n<={args.rows};\n"
-sql += "INSERT IGNORE INTO golem_lab_source.schema_probe VALUES (1,'Alpha',12.34),(2,'Beta',56.78);\n"
+sql += "INSERT IGNORE INTO golem_lab_source.schema_probe (id,name,amount) VALUES (1,'Alpha',12.34),(2,'Beta',56.78);\n"
 sql += 'SELECT COUNT(*) AS prepared_performance_rows FROM golem_lab_source.perf_orders;'
 result = subprocess.run([mysql,'--no-defaults',f'--host={args.host}',f'--port={args.port}',f'--user={args.user}','--batch'],input=sql,text=True,env=env,capture_output=True)
 if result.returncode:

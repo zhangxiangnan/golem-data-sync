@@ -27,7 +27,7 @@ export function moveNode(config:LabConfig,bindings:Record<string,string>,section
 }
 export function secretProblem(value:Json):boolean {
   if(Array.isArray(value))return value.some(secretProblem);
-  if(value&&typeof value==="object")return Object.entries(value).some(([key,v])=>/(password|passwd|secret|api[_-]?key|access[_-]?key|token|credential)/i.test(key)&&v!==null&&!(typeof v==="string"&&/^\$\{(secret:[\w-]+|datasource:[^}]+)\}$/.test(v))||secretProblem(v));
+  if(value&&typeof value==="object")return Object.entries(value).some(([key,v])=>/(password|passwd|pwd|authorization|private[_-]?key|secret|api[_-]?key|access[_-]?key|token|credential)/i.test(key)&&v!==null&&!(typeof v==="string"&&/^\$\{(secret:[\w-]+|datasource:[^}]+)\}$/.test(v))||secretProblem(v));
   return typeof value==="string"&&/(password|passwd|pwd|secret|api_key|token)\s*[=:]\s*[^\s]+/i.test(value)&&!/^\$\{secret:[\w-]+\}$/.test(value);
 }
 export function flatten(value:Json,prefix=""):Record<string,string> {

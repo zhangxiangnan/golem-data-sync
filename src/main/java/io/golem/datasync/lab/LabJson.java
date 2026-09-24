@@ -27,7 +27,7 @@ final class LabJson {
         if (value.isArray()) { var result=JSON.createArrayNode(); value.forEach(v -> result.add(canonical(v))); return result; }
         return value;
     }
-    static boolean sensitive(String key) { return key.toLowerCase(Locale.ROOT).matches(".*(password|passwd|secret|api[_-]?key|access[_-]?key|token|credential).*" ); }
+    static boolean sensitive(String key) { return key.toLowerCase(Locale.ROOT).matches(".*(password|passwd|pwd|authorization|private[_-]?key|secret|api[_-]?key|access[_-]?key|token|credential).*" ); }
     static JsonNode redact(JsonNode value, Collection<String> secrets) {
         if (value == null) return NullNode.instance;
         if (value.isObject()) {

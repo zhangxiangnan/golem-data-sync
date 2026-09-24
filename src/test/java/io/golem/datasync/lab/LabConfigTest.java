@@ -49,6 +49,8 @@ class LabConfigTest {
     }
     @Test void secretsResolveOnlyInExecutionAndPlaintextIsRejected() {
         var c=config();((ObjectNode)c.path("sink").get(0)).put("secret_access_key","${secret:extra}");
+        assertThat(LabJson.redact(LabJson.obj("{\"Authorization\":\"Bearer private-value\"}"),List.of()).toString()).doesNotContain("private-value");
+        assertThat(LabJson.sensitive("pwd")).isTrue();
         var p=service.prepare(c,bindings(),Map.of("extra","private-value"),false);
         assertThat(p.report().toString()).doesNotContain("private-value");assertThat(p.execution().toString()).contains("private-value");
         assertThat(service.prepare(c,bindings(),Map.of(),false).report().path("errors").toString()).contains("秘密引用未配置");
